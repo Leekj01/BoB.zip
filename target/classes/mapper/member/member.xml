@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">
+
+	<resultMap type="member" id="memberResult">
+		<result property="memberId" column="memberId" />
+		<result property="memberPwd" column="memberPwd" />
+		<result property="memberNick" column="memberNick" />
+		<result property="phone" column="phone" />
+		<result property="email" column="email" />
+		<result property="regDate" column="regDate" />
+	</resultMap>
+	
+	<select id="login" resultType="member"  parameterType="java.util.Map"  >
+	    <![CDATA[
+			select * from members
+			 where memberId=#{memberId}
+			 and memberPwd=#{memberPwd}			
+		]]>
+	</select>
+</mapper>
