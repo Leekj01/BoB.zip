@@ -8,4 +8,8 @@ public interface MemberDAO {
 	
 	public Member login(Map<String,String> loginMap);
 
+	public void insertNewMember(Member member);
+
+	public String selectOverlappedID(String memberId);
+
 }

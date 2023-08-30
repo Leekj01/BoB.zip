@@ -9,9 +9,11 @@
 		<result property="memberId" column="memberId" />
 		<result property="memberPwd" column="memberPwd" />
 		<result property="memberNick" column="memberNick" />
-		<result property="phone" column="phone" />
-		<result property="email" column="email" />
-		<result property="regDate" column="regDate" />
+		<result property="phone1" column="phone1" />
+		<result property="phone2" column="phone2" />
+		<result property="phone3" column="phone3" />
+		<result property="email1" column="email1" />
+		<result property="email2" column="email2" />
 	</resultMap>
 	
 	<select id="login" resultType="member"  parameterType="java.util.Map"  >
@@ -20,5 +22,40 @@
 			 where memberId=#{memberId}
 			 and memberPwd=#{memberPwd}			
 		]]>
+	</select>
+	
+	<insert id="insertNewMember" parameterType="member">
+		<![CDATA[
+			insert into members(memberId,
+				 					 memberPwd,
+                                     memberNick,
+                                     phone1,
+                                     phone2,
+                                     phone3,
+                                     email1,
+                                     email2)
+							 values(#{memberId},
+									#{memberPwd},
+									#{memberNick},
+                                    #{phone1},
+                                    #{phone2},
+                                    #{phone3},
+                                    #{email1},
+                                    #{email2})
+   		]]>      
+	</insert>
+	
+	<select id="selectOverlappedID" parameterType="String" resultType="String">
+		<![CDATA[
+			SELECT
+    			CASE
+        			WHEN COUNT(*) = 1 THEN 'true'
+        			ELSE 'false'
+    			END
+			FROM
+    			members
+			WHERE
+    			memberId = #{meberId}
+   		]]> 
 	</select>
 </mapper>

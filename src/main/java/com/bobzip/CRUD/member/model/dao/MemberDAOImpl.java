@@ -18,6 +18,17 @@ public class MemberDAOImpl implements MemberDAO {
 	public Member login(Map<String,String> loginMap) {
 		return (Member)sqlSession.selectOne("mapper.member.login",loginMap);
 	}
+
+	@Override
+	public void insertNewMember(Member member) {
+		sqlSession.insert("mapper.member.insertNewMember",member);
+	}
+
+	@Override
+	public String selectOverlappedID(String memberId) {
+		String result = sqlSession.selectOne("mapper.member.selectOverlappedID",memberId);
+		return result;
+	}
 	
 	
 	

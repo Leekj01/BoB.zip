@@ -8,4 +8,8 @@ public interface MemberService {
 
 	public Member login(Map<String,String> loginMap);
 
+	public void addMember(Member member);
+
+	public String overlapped(String memberId);
+
 }

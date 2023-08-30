@@ -22,6 +22,16 @@ public class MemberServiceImpl implements MemberService {
 	public Member login(Map<String,String> loginMap) {
 		return memberDAO.login(loginMap);
 	}
+
+	@Override
+	public void addMember(Member member) {
+		memberDAO.insertNewMember(member);
+	}
+
+	@Override
+	public String overlapped(String memberId) {
+		return memberDAO.selectOverlappedID(memberId);
+	}
 	
 	
 }
