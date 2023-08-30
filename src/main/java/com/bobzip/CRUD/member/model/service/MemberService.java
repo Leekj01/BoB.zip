@@ -12,4 +12,8 @@ public interface MemberService {
 
 	public String overlapped(String memberId);
 
+	public Member getMemberInfo(String memberId);
+
+	public void updateMember(Member member);
+
 }

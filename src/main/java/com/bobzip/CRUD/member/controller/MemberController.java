@@ -27,12 +27,12 @@ public class MemberController {
 	@Autowired
 	private MemberService memberservice;
 	
-	
+	//로그인창 요청
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm() {
 	    return "member/loginForm";
 	}
-	
+	//로그인
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam Map<String, String> loginMap,
 						HttpSession session, ModelAndView mav) throws Exception {
@@ -49,12 +49,12 @@ public class MemberController {
 		
 		return mav;
 	}
-	
+	//회원가입창 요청
 	@RequestMapping(value="/addMemberForm", method=RequestMethod.GET)
 	public String addMemberForm() {
 		return "member/addMemberForm";
 	}
-	
+	//회원가입
 	@RequestMapping(value="/addMember.do", method=RequestMethod.POST)
 	public ResponseEntity addMember(@ModelAttribute Member member,
 					HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -80,7 +80,7 @@ public class MemberController {
 		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
-	
+	//아이디 중복확인
 	@RequestMapping(value="/overlapped.do" ,method = RequestMethod.POST)
 	public ResponseEntity overlapped(@RequestParam("memberId") String memberId,
 						HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -89,10 +89,29 @@ public class MemberController {
 		resEntity =new ResponseEntity(result, HttpStatus.OK);
 		return resEntity;
 	}
-	
+	//로그아웃 
 	@RequestMapping(value = "/logout.do", method = RequestMethod.POST)
 	public String logout (HttpSession session) {
 		session.removeAttribute("memberLoggedIn");
 		return "redirect:/";
 	}
+	//회원정보 수정 페이지 요청
+	@RequestMapping(value="/updateForm", method=RequestMethod.GET)
+	public ModelAndView deleteForm(@RequestParam("memberId") String memberId, ModelAndView mav) {
+		Member memberInfo = memberservice.getMemberInfo(memberId);
+		mav.addObject("memberInfo", memberInfo);
+		mav.setViewName("member/updateForm");
+		return mav;
+	}
+	
+	//회원정보 수정 
+	@RequestMapping(value = "/updateMember.do", method = RequestMethod.POST)
+	public String updateMember(@ModelAttribute Member member,
+									HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		memberservice.updateMember(member);
+		return "redirect:/";
+	} 
+	
 }

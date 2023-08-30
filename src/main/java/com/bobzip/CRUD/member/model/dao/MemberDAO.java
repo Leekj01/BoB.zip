@@ -12,4 +12,8 @@ public interface MemberDAO {
 
 	public String selectOverlappedID(String memberId);
 
+	public Member getOneMember(String memberId);
+
+	public void updateMember(Member member);
+
 }

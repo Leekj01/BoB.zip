@@ -32,6 +32,17 @@ public class MemberServiceImpl implements MemberService {
 	public String overlapped(String memberId) {
 		return memberDAO.selectOverlappedID(memberId);
 	}
+
+	@Override
+	public Member getMemberInfo(String memberId) {
+		return memberDAO.getOneMember(memberId);
+	}
+
+	@Override
+	public void updateMember(Member member) {
+		memberDAO.updateMember(member);
+		
+	}
 	
 	
 }

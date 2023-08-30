@@ -58,4 +58,29 @@
     			memberId = #{meberId}
    		]]> 
 	</select>
+	
+	<select id="selectOneMember" parameterType="String" resultType="member">
+		<![CDATA[
+			SELECT
+    			*
+			FROM
+    			members
+			WHERE
+    			memberId = #{meberId}
+   		]]> 
+	</select>
+	
+	<update id="updateMember" parameterType="member">
+		<![CDATA[
+			update members 
+			set memberPwd = #{memberPwd},
+                memberNick = #{memberNick},
+                phone1 = #{phone1},
+                phone2 = #{phone2},
+                phone3 = #{phone3},
+                email1 = #{email1},
+                email2 = #{email2}
+			where memberId = #{memberId}
+   		]]>   
+	</update>
 </mapper>

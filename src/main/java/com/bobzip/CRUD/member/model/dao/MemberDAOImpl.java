@@ -29,6 +29,16 @@ public class MemberDAOImpl implements MemberDAO {
 		String result = sqlSession.selectOne("mapper.member.selectOverlappedID",memberId);
 		return result;
 	}
+
+	@Override
+	public Member getOneMember(String memberId) {
+		return sqlSession.selectOne("mapper.member.selectOneMember",memberId);
+	}
+
+	@Override
+	public void updateMember(Member member) {
+		sqlSession.update("mapper.member.updateMember",member);
+	}
 	
 	
 	
