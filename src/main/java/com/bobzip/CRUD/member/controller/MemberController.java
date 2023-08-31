@@ -40,7 +40,9 @@ public class MemberController {
 		Member member = memberservice.login(loginMap);
 		if (member != null) {
 			String memberId = member.getMemberId();
+			String memberNick = member.getMemberNick();
 			session.setAttribute("memberLoggedIn", memberId);
+			session.setAttribute("memberNick", memberNick);
 			mav.setViewName("redirect:/");
 		} else {
 			mav.addObject("message","아이디나 비밀번호가 틀립니다. 다시로그인해주세요");
@@ -90,7 +92,7 @@ public class MemberController {
 		return resEntity;
 	}
 	//로그아웃 
-	@RequestMapping(value = "/logout.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout (HttpSession session) {
 		session.removeAttribute("memberLoggedIn");
 		return "redirect:/";

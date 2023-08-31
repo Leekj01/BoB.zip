@@ -8,6 +8,7 @@
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
 function fn_overlapped(){
     var _id=$("#_member_id").val();
     if(_id==''){
@@ -23,8 +24,6 @@ function fn_overlapped(){
        success:function (data,textStatus){
           if(data=='false'){
        	    alert("사용할 수 있는 ID입니다.");
-       	    $('#btnOverlapped').prop("disabled", true);
-       	    $('#_member_id').prop("disabled", true);
        	    $('#member_id').val(_id);
           }else{
         	alert("사용할 수 없는 ID입니다.");
@@ -72,20 +71,7 @@ function fn_overlapped(){
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">이메일<br>(e-mail)</td>
-					<td><input size="10px"   type="text" name="email1" /> @ <input  size="10px"  type="text"name="email2" /> 
-						<select name="email2" onChange=""	title="직접입력">
-							<option value="non">직접입력</option>
-							<option value="hanmail.net">hanmail.net</option>
-							<option value="naver.com">naver.com</option>
-							<option value="yahoo.co.kr">yahoo.co.kr</option>								<option value="hotmail.com">hotmail.com</option>
-							<option value="paran.com">paran.com</option>
-							<option value="nate.com">nate.com</option>
-							<option value="google.com">google.com</option>
-							<option value="gmail.com">gmail.com</option>
-							<option value="empal.com">empal.com</option>
-							<option value="korea.com">korea.com</option>
-							<option value="freechal.com">freechal.com</option>
-						</select>
+					<td><input size="10px"   type="text" name="email1" /> @ <input  size="10px"  type="text"name="email2" id="email_input"/> 
 					</td>
 				</tr>
 			</tbody>
