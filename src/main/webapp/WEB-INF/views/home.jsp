@@ -28,7 +28,7 @@ function result(){
 	<P>  The time on the server is ${serverTime}. </P>
 	<c:if test="${memberLoggedIn != null}">
 	    <p>${memberNick}님 반갑습니다.</p>
-	    <a href="${contextPath}/fridge/myFridge.do?memberId=${memberLoggedIn}">마이 냉장고</a>
+	    <a href="${contextPath}/fridge/myFridgeForm?memberId=${memberLoggedIn}">나의 냉장고</a>
 	    <a href="${contextPath}/member/updateForm?memberId=${memberLoggedIn}">회원수정</a>
 	    <a href="${contextPath}/member/logout.do">로그아웃</a>
     </c:if>

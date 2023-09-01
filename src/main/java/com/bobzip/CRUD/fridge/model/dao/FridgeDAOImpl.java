@@ -1,5 +1,7 @@
 package com.bobzip.CRUD.fridge.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,8 +15,8 @@ public class FridgeDAOImpl implements FridgeDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public Fridge selectMyFridge(String memberId) {
-		return sqlSession.selectOne("mapper.fridge.",memberId);
+	public List<Fridge> selectMyFridge(String memberId) {
+		return sqlSession.selectList("mapper.fridge.selectMyFridge",memberId);
 	}
 	
 	

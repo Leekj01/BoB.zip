@@ -1,5 +1,7 @@
 package com.bobzip.CRUD.fridge.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ public class FridgeServiceImpl implements FridgeService {
 	private FridgeDAO fridgeDAO;
 
 	@Override
-	public Fridge myFridge(String memberId) {
+	public List<Fridge> myFridge(String memberId) {
 		return fridgeDAO.selectMyFridge(memberId);
 	}
 	

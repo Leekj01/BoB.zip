@@ -1,5 +1,8 @@
 package com.bobzip.CRUD.fridge.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +20,11 @@ public class FridgeController {
 	@Autowired
 	private FridgeService fridgeService;
 	
-	@RequestMapping(value = "/myFridge.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/myFridgeForm", method = RequestMethod.GET)
 	public ModelAndView myFridge(@RequestParam("memberId") String memberId,ModelAndView mav) {
-		Fridge myFridge = fridgeService.myFridge(memberId);
+		List<Fridge> myFridge = fridgeService.myFridge(memberId);
 		mav.addObject("myFridge",myFridge);
-		mav.setViewName("myfridge");
+		mav.setViewName("/fridge/myfridge");
 		return mav;
 	}
 	
