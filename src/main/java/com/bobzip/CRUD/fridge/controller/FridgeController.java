@@ -23,6 +23,7 @@ public class FridgeController {
 	@RequestMapping(value = "/myFridgeForm", method = RequestMethod.GET)
 	public ModelAndView myFridge(@RequestParam("memberId") String memberId,ModelAndView mav) {
 		List<Fridge> myFridge = fridgeService.myFridge(memberId);
+		List<String> allIngredients = fridgeService.allIngredients();
 		mav.addObject("myFridge",myFridge);
 		mav.setViewName("/fridge/myfridge");
 		return mav;
