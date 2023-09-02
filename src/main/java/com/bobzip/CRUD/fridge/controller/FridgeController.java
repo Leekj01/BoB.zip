@@ -32,10 +32,4 @@ public class FridgeController {
 		return mav;
 	}
 	
-	private String countDay(Date storageDate, Date today) {
-		long differenceInMillis = today.getTime() - storageDate.getTime();
-        long differenceInDays = differenceInMillis / (24 * 60 * 60 * 1000); 
-        return differenceInDays+"일";
-	} 
-	
 }
