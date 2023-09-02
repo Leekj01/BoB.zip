@@ -25,6 +25,7 @@ public class FridgeController {
 		List<Fridge> myFridge = fridgeService.myFridge(memberId);
 		List<String> allIngredients = fridgeService.allIngredients();
 		mav.addObject("myFridge",myFridge);
+		mav.addObject("allIngredients", allIngredients);
 		mav.setViewName("/fridge/myfridge");
 		return mav;
 	}

@@ -18,6 +18,11 @@ public class FridgeDAOImpl implements FridgeDAO {
 	public List<Fridge> selectMyFridge(String memberId) {
 		return sqlSession.selectList("mapper.fridge.selectMyFridge",memberId);
 	}
+
+	@Override
+	public List<String> selectAllIngredients() {
+		return sqlSession.selectList("mapper.fridge.selectAllIngredients");
+	}
 	
 	
 }

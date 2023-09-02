@@ -18,6 +18,11 @@ public class FridgeServiceImpl implements FridgeService {
 	public List<Fridge> myFridge(String memberId) {
 		return fridgeDAO.selectMyFridge(memberId);
 	}
+
+	@Override
+	public List<String> allIngredients() {
+		return fridgeDAO.selectAllIngredients();
+	}
 	
 	
 

@@ -8,4 +8,6 @@ public interface FridgeDAO {
 
 	List<Fridge> selectMyFridge(String memberId);
 
+	List<String> selectAllIngredients();
+
 }

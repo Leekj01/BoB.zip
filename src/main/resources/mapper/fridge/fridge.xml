@@ -10,4 +10,10 @@
 			select * from fridge where memberId=#{memberId}	
 		]]>
 	</select>
+	
+	<select id="selectAllIngredients"  resultType="java.lang.String">
+		<![CDATA[
+			select ingredientName from ingredient
+		]]>
+	</select>
 </mapper>

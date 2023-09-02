@@ -8,4 +8,6 @@ public interface FridgeService {
 
 	List<Fridge> myFridge(String memberId);
 
+	List<String> allIngredients();
+
 }
