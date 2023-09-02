@@ -5,7 +5,7 @@
 
 <mapper namespace="mapper.fridge">
 
-	<select id="selectMyFridge" parameterType="String" resultType="java.util.List">
+	<select id="selectMyFridge" parameterType="String" resultType="fridge">
 		<![CDATA[
 			select * from fridge where memberId=#{memberId}	
 		]]>

@@ -1,5 +1,7 @@
 package com.bobzip.CRUD.fridge.model.service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ public class FridgeServiceImpl implements FridgeService {
 	}
 
 	@Override
-	public List<String> allIngredients() {
+	public List<String> allIngredients() {	
 		return fridgeDAO.selectAllIngredients();
 	}
 	
