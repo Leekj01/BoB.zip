@@ -26,6 +26,4 @@ public class FridgeServiceImpl implements FridgeService {
 		return fridgeDAO.selectAllIngredients();
 	}
 	
-	
-
 }

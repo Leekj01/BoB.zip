@@ -26,24 +26,15 @@ public class FridgeController {
 	public ModelAndView myFridge(@RequestParam("memberId") String memberId,ModelAndView mav) {
 		List<Fridge> myFridge = fridgeService.myFridge(memberId);
 		List<String> allIngredients = fridgeService.allIngredients();
-		String dDay="";
-		for (int i=0; i<myFridge.size(); i++) {
-			Date storageDate = myFridge.get(i).getStorageDate();
-			Date today = Date.valueOf(LocalDate.now());
-			dDay = countDday(storageDate, today);
-		}
 		mav.addObject("myFridge",myFridge);
 		mav.addObject("allIngredients", allIngredients);
-		mav.addObject("dDay",dDay);
 		mav.setViewName("/fridge/myfridge");
 		return mav;
 	}
 	
-	private String countDday(Date storageDate, Date today) {
+	private String countDay(Date storageDate, Date today) {
 		long differenceInMillis = today.getTime() - storageDate.getTime();
-        long differenceInDays = differenceInMillis / (24 * 60 * 60 * 1000);
-
-        // D-day 
+        long differenceInDays = differenceInMillis / (24 * 60 * 60 * 1000); 
         return differenceInDays+"일";
 	} 
 	

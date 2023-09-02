@@ -11,20 +11,35 @@
     <title>Insert title here</title>
 </head>
 <body>
-    <h1>나의 냉장고</h1>
-    <table border="1">
+	<h1>나의 냉장고</h1>
+		<table border="1">
         <tr>
             <th>품목</th>
             <th>저장날짜</th>
-            <th>저장일</th>
         </tr>
         <c:forEach var="myFridge" items="${myFridge}">
             <tr>
                 <td>${myFridge.ingredientName}</td>
                 <td>${myFridge.storageDate}</td>
-                <td>${dDay}</td>
             </tr>
         </c:forEach>
     </table>
+	<div class="wrapper">
+  		<div class="select">
+    		<span>재료를 선택해주세요</span>
+    		<span class="material-icons">expand_more</span>
+  		</div><!--select-->
+		<div class="content">
+    		<div class="search-box">
+      			<span class="material-icons">search</span>     
+      			<input class="filter" type="text" placeholder="검색">
+    		</div><!--search box-->
+    		<ul class="options">
+    			<c:forEach var="ingredient" items="${allIngredients}">
+    				<li>${ingredient}</li>
+    			</c:forEach>
+    		</ul>
+  		</div><!--content-->
+	</div><!--wrapper-->
 </body>
 </html>
