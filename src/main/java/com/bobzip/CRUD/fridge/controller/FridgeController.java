@@ -32,4 +32,8 @@ public class FridgeController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/addFridge.do", method = RequestMethod.POST)
+	public String addFridge(@RequestParam("selectedIngredients") List<String> ingredients) {
+		fridgeService.addFridge(ingredients);
+	}
 }

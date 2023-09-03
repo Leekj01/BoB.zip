@@ -13,6 +13,7 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+	//선택재료 담을 배열
 	let selectedIngredients = [];
 	
 	//재료 클릭시 hidden input 추가
@@ -40,7 +41,7 @@
 	    updateSelectedIngredients(); // 선택한 재료 표시 업데이트
 	}
 
-	// 함수: 선택한 재료 제거
+	// 선택한 재료 제거
 	function removeSelectedIngredient(index) {
 	    let removedIngredient = selectedIngredients.splice(index, 1)[0]; // 선택한 재료 제거 및 반환
 	    removeHiddenInput(removedIngredient); // hidden input 제거
@@ -124,25 +125,25 @@
 	<div class="searchbox">
         <label>재료: <input type="text" id="search" onkeyup="filter()" placeholder="재료를 입력하세요"></label>
     </div>
-    <div class="listbox">
-    <c:forEach var="ingredient" items="${allIngredients}">
-        <div class="listInner">
-            <!-- span 클릭 시 toggleSelectedBox 함수 호출 -->
-            <span class="ingredient" onclick="toggleSelectedBox(event)">${ingredient}</span>
-        </div>
-    </c:forEach>
-</div>
-<div class="selectedbox">
-    <!-- 선택한 재료들을 화면 상단에 표시 -->
-    <div>
-        선택한 재료:
-        <table id="selectedIngredientsTable" border="1"></table>
-    </div>
-    <!-- 폼 태그로 감싸기 -->
-    <form id="form" action="${contextPath}/fridge/addFridge.do" method="post">
-        <!-- "냉장고에 넣기" input submit으로 변경 -->
-        <input type="submit" value="냉장고에 넣기">
-    </form>
-</div>
+    <div class="selectedbox" style="border: 1px solid black;">
+	    <!-- 선택한 재료들을 화면 상단에 표시 -->
+	    <div>
+	        선택한 재료:
+	        <table id="selectedIngredientsTable" border="0"></table>
+	    </div>
+	    <!-- 폼 태그로 감싸기 -->
+	    <form id="form" action="${contextPath}/fridge/addFridge.do" method="post">
+	        <!-- span 클릭 시 input hidden 태그 추가, X 클릭시 삭제 -->
+	        <input type="submit" value="냉장고에 넣기">
+	    </form>
+	</div>
+    <div class="listbox" style="border: 1px solid black;">
+	    <c:forEach var="ingredient" items="${allIngredients}">
+	        <div class="listInner">
+	            <!-- span 클릭 시 toggleSelectedBox 함수 호출 -->
+	            <span class="ingredient" onclick="toggleSelectedBox(event)">${ingredient}</span>
+	        </div>
+	    </c:forEach>
+	</div>
 </body>
 </html>

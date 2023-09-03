@@ -11,5 +11,7 @@ public interface FridgeService {
 
 	List<String> allIngredients();
 
+	void addFridge(List<String> ingredients);
+
 
 }

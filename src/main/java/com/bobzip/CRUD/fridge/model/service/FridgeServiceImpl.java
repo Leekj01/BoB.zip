@@ -25,5 +25,11 @@ public class FridgeServiceImpl implements FridgeService {
 	public List<String> allIngredients() {	
 		return fridgeDAO.selectAllIngredients();
 	}
+
+	@Override
+	public void addFridge(List<String> ingredients) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
