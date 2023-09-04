@@ -2,6 +2,7 @@ package com.bobzip.CRUD.fridge.model.service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.bobzip.CRUD.fridge.model.vo.Fridge;
 
@@ -11,7 +12,9 @@ public interface FridgeService {
 
 	List<String> allIngredients();
 
-	void addFridge(List<String> ingredients);
+	void addFridge(List<Fridge> ingredients);
+
+	void deleteFridge(int fridgdeNumber);
 
 
 }

@@ -15,5 +15,4 @@ public class Fridge {
 	private int fridgeNumber;
 	private String memberId;
 	private String ingredientName;
-	private Date storageDate;
 }

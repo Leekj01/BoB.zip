@@ -5,6 +5,12 @@
 
 <mapper namespace="mapper.fridge">
 
+	<resultMap type="fridge" id="fridgeResult">
+		<result property="fridgeNumber" column="fridgeNumber" />
+		<result property="memberId" column="memberId" />
+		<result property="ingredientName" column="ingredientName" />
+	</resultMap>
+
 	<select id="selectMyFridge" parameterType="String" resultType="fridge">
 		<![CDATA[
 			select * from fridge where memberId=#{memberId}	
@@ -16,4 +22,16 @@
 			select ingredientName from ingredient
 		]]>
 	</select>
+	
+	<insert id="insertMyFridge" parameterType="fridge">
+		<![CDATA[
+			insert into fridge(memberId, ingredientName) values(#{memberId},#{ingredientName})
+		]]>
+	</insert>
+	
+	<delete id="deleteMyFridge" parameterType="int">
+		<![CDATA[
+			delete from fridge where fridgeNumber=#{fridgeNumber}
+		]]>
+	</delete>
 </mapper>

@@ -10,6 +10,15 @@
 	span:hover {
 		cursor:pointer;
 	}
+	.listbox {
+    display: flex;
+    flex-wrap: wrap;
+	}
+
+	.listInner {
+    width: 20%; 
+    box-sizing: border-box;  
+	}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -113,37 +122,40 @@
 		<table border="1">
         <tr>
             <th>품목</th>
-            <th>저장날짜</th>
+            <th>삭제</th>
         </tr>
         <c:forEach var="myFridge" items="${myFridge}">
             <tr>
                 <td>${myFridge.ingredientName}</td>
-                <td>${myFridge.storageDate}</td>
+                <td><a href="${contextPath}/fridge/deleteFridge.do?fridgeNumber=${myFridge.fridgeNumber}">X</a></td>
             </tr>
         </c:forEach>
     </table>
-	<div class="searchbox">
-        <label>재료: <input type="text" id="search" onkeyup="filter()" placeholder="재료를 입력하세요"></label>
-    </div>
-    <div class="selectedbox" style="border: 1px solid black;">
-	    <!-- 선택한 재료들을 화면 상단에 표시 -->
-	    <div>
-	        선택한 재료:
-	        <table id="selectedIngredientsTable" border="0"></table>
+    <div class="selectArea" style="border: 1px solid black;">
+		<div class="searchbox">
+	        <label>재료: <input type="text" id="search" onkeyup="filter()" placeholder="재료를 입력하세요"></label>
 	    </div>
-	    <!-- 폼 태그로 감싸기 -->
-	    <form id="form" action="${contextPath}/fridge/addFridge.do" method="post">
-	        <!-- span 클릭 시 input hidden 태그 추가, X 클릭시 삭제 -->
-	        <input type="submit" value="냉장고에 넣기">
-	    </form>
+	    <div class="selectedbox">
+		    <!-- 선택한 재료들을 화면 상단에 표시 -->
+		    <div>
+		        선택한 재료:
+		        <table id="selectedIngredientsTable" border="0"></table>
+		    </div>
+		    <!-- 폼 태그로 감싸기 -->
+		    <form id="form" action="${contextPath}/fridge/addFridge.do" method="post">
+		        <!-- span 클릭 시 input hidden 태그 추가, X 클릭시 삭제 -->
+		        <input type="submit" value="냉장고에 넣기">
+		    </form>
+		</div>
+		<div class="listbox">
+		    <c:forEach var="ingredient" items="${allIngredients}">
+		        <div class="listInner">
+		            <!-- span 클릭 시 toggleSelectedBox 함수 호출 -->
+		            <span class="ingredient" onclick="toggleSelectedBox(event)">${ingredient}</span>
+		        </div>
+		    </c:forEach>
+		</div>
 	</div>
-    <div class="listbox" style="border: 1px solid black;">
-	    <c:forEach var="ingredient" items="${allIngredients}">
-	        <div class="listInner">
-	            <!-- span 클릭 시 toggleSelectedBox 함수 호출 -->
-	            <span class="ingredient" onclick="toggleSelectedBox(event)">${ingredient}</span>
-	        </div>
-	    </c:forEach>
-	</div>
+    
 </body>
 </html>

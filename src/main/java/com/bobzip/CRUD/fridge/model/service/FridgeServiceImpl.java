@@ -3,6 +3,7 @@ package com.bobzip.CRUD.fridge.model.service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,13 @@ public class FridgeServiceImpl implements FridgeService {
 	}
 
 	@Override
-	public void addFridge(List<String> ingredients) {
-		// TODO Auto-generated method stub
-		
+	public void addFridge(List<Fridge> ingredients) {
+		fridgeDAO.insertMyFridge(ingredients);
+	}
+
+	@Override
+	public void deleteFridge(int fridgeNumber) {
+		fridgeDAO.deleteMyFridge(fridgeNumber);
 	}
 	
 }
