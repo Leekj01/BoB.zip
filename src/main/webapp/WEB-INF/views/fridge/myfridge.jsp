@@ -117,6 +117,7 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
 </head>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <body>
 	<h1>나의 냉장고</h1>
 		<table border="1">
@@ -156,6 +157,6 @@
 		    </c:forEach>
 		</div>
 	</div>
-    
 </body>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </html>

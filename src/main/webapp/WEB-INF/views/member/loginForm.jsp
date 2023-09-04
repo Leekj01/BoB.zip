@@ -20,6 +20,7 @@ function result(){
 </script>
 </c:if>
 </head>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <body>
 	<H3>회원 로그인 창</H3>
 	<DIV id="detail_table">
@@ -46,4 +47,5 @@ function result(){
 		   <a href="${contextPath}/member/addMemberForm">회원가입</a>    | 	   
 	</form>		
 </body>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </html>

@@ -41,6 +41,7 @@ function fn_overlapped(){
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <body>
 <h3>필수입력사항</h3>
 	<form action="${contextPath}/member/addMember.do" method="post">	
@@ -90,4 +91,5 @@ function fn_overlapped(){
 	</div>
 </form>	
 </body>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </html>

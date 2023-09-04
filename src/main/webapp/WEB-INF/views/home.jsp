@@ -3,12 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page session="true" %>
-
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/home.css">
 <script src="https://kit.fontawesome.com/3e352a9905.js" crossorigin="anonymous"></script>
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <c:if test='${not empty message }'>
 <script>
 window.onload=function()
@@ -23,6 +21,7 @@ function result(){
 </c:if>
 	<title>Home</title>
 </head>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <body>
 	<section class="main">
         <div class="container">

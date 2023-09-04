@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <body>
 <h3>회원정보</h3>
 	<form action="${contextPath}/member/updateMember.do" method="post">	
@@ -57,4 +58,5 @@
 	</div>
 </form>	
 </body>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </html>
