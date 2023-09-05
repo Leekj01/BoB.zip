@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page session="true" %>
@@ -33,7 +32,12 @@
 	                    </li>
                     </c:if>
                     <c:if test="${memberLoggedIn == null}">
-                    	<a href="${contextPath}/member/loginForm">Login</a>
+                    	<li>
+	                        <a href="#">Homes</a>
+	                    </li>
+                    	<li>
+                    		<a href="${contextPath}/member/loginForm">Login</a>
+                    	</li>
                     </c:if>
                 </ul>
             </div>

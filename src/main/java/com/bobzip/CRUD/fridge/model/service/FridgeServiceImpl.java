@@ -33,8 +33,8 @@ public class FridgeServiceImpl implements FridgeService {
 	}
 
 	@Override
-	public void deleteFridge(int fridgeNumber) {
-		fridgeDAO.deleteMyFridge(fridgeNumber);
+	public void deleteFridge(int rowNumber) {
+		fridgeDAO.deleteMyFridge(rowNumber);
 	}
 	
 }

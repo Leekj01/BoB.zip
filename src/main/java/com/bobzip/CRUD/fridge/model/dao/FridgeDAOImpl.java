@@ -34,8 +34,8 @@ public class FridgeDAOImpl implements FridgeDAO {
 	}
 
 	@Override
-	public void deleteMyFridge(int fridgeNumber) {
-		sqlSession.delete("mapper.fridge.deleteMyFridge", fridgeNumber);
+	public void deleteMyFridge(int rowNumber) {
+		sqlSession.delete("mapper.fridge.deleteMyFridge", rowNumber);
 	}
 	
 	

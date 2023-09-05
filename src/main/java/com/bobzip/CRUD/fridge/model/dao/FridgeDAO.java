@@ -13,6 +13,6 @@ public interface FridgeDAO {
 
 	void insertMyFridge(List<Fridge> ingredients);
 
-	void deleteMyFridge(int fridgeNumber);
+	void deleteMyFridge(int rowNumber);
 
 }

@@ -128,7 +128,7 @@
         <c:forEach var="myFridge" items="${myFridge}">
             <tr>
                 <td>${myFridge.ingredientName}</td>
-                <td><a href="${contextPath}/fridge/deleteFridge.do?fridgeNumber=${myFridge.fridgeNumber}">X</a></td>
+                <td><a href="${contextPath}/fridge/deleteFridge.do?rowNumber=${myFridge.rowNumber}">X</a></td>
             </tr>
         </c:forEach>
     </table>

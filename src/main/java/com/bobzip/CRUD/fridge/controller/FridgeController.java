@@ -55,9 +55,10 @@ public class FridgeController {
 	}
 	
 	@RequestMapping(value="/deleteFridge.do", method=RequestMethod.GET)
-	public String deleteFridge(@RequestParam("fridgeNumber")int fridgeNumber, HttpSession session) {
+	public String deleteFridge(@RequestParam("rowNumber")int rowNumber, HttpSession session) {
+		System.out.println(rowNumber);
 		String memberId = (String)session.getAttribute("memberLoggedIn");
-		fridgeService.deleteFridge(fridgeNumber);
+		fridgeService.deleteFridge(rowNumber);
 		
 		return "redirect:/fridge/myFridgeForm";
 	}

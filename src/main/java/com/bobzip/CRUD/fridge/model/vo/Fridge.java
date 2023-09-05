@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Fridge {
-	private int fridgeNumber;
+	private int rowNumber;
 	private String memberId;
 	private String ingredientName;
 }

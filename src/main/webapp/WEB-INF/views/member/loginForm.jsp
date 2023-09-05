@@ -6,6 +6,7 @@
 <!DOCTYPE html >
 <html>
 <head>
+<script src="https://kit.fontawesome.com/3e352a9905.js" crossorigin="anonymous"></script>
 <style>
 	#detail_table {
     	margin-top: 100px; 

@@ -14,7 +14,7 @@ public interface FridgeService {
 
 	void addFridge(List<Fridge> ingredients);
 
-	void deleteFridge(int fridgdeNumber);
+	void deleteFridge(int rowNumber);
 
 
 }

@@ -6,20 +6,20 @@
 <mapper namespace="mapper.fridge">
 
 	<resultMap type="fridge" id="fridgeResult">
-		<result property="fridgeNumber" column="fridgeNumber" />
+		<result property="rowNumber" column="rowNumber" />
 		<result property="memberId" column="memberId" />
 		<result property="ingredientName" column="ingredientName" />
 	</resultMap>
 
 	<select id="selectMyFridge" parameterType="String" resultType="fridge">
 		<![CDATA[
-			select distinct ingredientName from fridge where memberId=#{memberId}	
+			select * from fridge where memberId=#{memberId}	
 		]]>
 	</select>
 	
 	<select id="selectAllIngredients"  resultType="java.lang.String">
 		<![CDATA[
-			select ingredientName from ingredient
+			select distinct ingredientName from ingredient
 		]]>
 	</select>
 	
@@ -31,7 +31,7 @@
 	
 	<delete id="deleteMyFridge" parameterType="int">
 		<![CDATA[
-			delete from fridge where fridgeNumber=#{fridgeNumber}
+			delete from fridge where rowNumber=#{rowNumber}
 		]]>
 	</delete>
 </mapper>
