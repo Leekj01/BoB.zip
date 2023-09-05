@@ -6,6 +6,11 @@
 <!DOCTYPE html >
 <html>
 <head>
+<style>
+	#detail_table {
+    	margin-top: 100px; 
+	}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <c:if test='${not empty message }'>
 <script>

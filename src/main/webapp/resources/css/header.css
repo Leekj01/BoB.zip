@@ -7,7 +7,7 @@
 li {
     list-style: none;
 }
-a{text-decoration: none; font-size:20px; color:white;}
+
 .container {
     width: 1140px;
     margin: 0 auto;
@@ -25,6 +25,7 @@ header {
     z-index: 1;
     background-color: rgb(11, 23, 39);
 }
+header a {text-decoration: none; font-size:20px; color:white;}
 header .container {
     height: 100%;
     display: flex;
