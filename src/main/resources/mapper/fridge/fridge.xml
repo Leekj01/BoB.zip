@@ -13,7 +13,7 @@
 
 	<select id="selectMyFridge" parameterType="String" resultType="fridge">
 		<![CDATA[
-			select * from fridge where memberId=#{memberId}	
+			select distinct ingredientName from fridge where memberId=#{memberId}	
 		]]>
 	</select>
 	
