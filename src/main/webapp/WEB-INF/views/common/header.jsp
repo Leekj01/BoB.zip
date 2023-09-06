@@ -13,19 +13,22 @@
 	<header id="top">
         <div class="container">
             <div class="logo">
-                <a href=""><img src="img/logo-baikal.png" alt=""></a>
+                <a href=""><img src="${contextPath}/resources/img/logo-baikal.png" alt=""></a>
             </div>
             <div class="nav">
                 <ul class="menu">
                 	<c:if test="${memberLoggedIn != null}">
 	                    <li>
-	                        <a href="#">Homes</a>
+	                        <a href="${contextPath}/">Homes</a>
+	                    </li>
+	                    <li>
+	                        <a href="${contextPath}/recipe/recipeForm">recipes</a>
 	                    </li>
 	                    <li>
 	                        <a href="${contextPath}/fridge/myFridgeForm">MyFridge</a>
 	                    </li>
 	                    <li>
-	                        <a href="${contextPath}/member/updateForm?memberId=${memberLoggedIn}">Edit Profile</a>
+	                        <a href="${contextPath}/member/updateForm?memberId=${memberLoggedIn}">Profile</a>
 	                    </li>
 	                    <li>
 	                        <a href="${contextPath}/member/logout.do">Logout</a>
@@ -34,6 +37,12 @@
                     <c:if test="${memberLoggedIn == null}">
                     	<li>
 	                        <a href="#">Homes</a>
+	                    </li>
+	                    <li>
+	                        <a href="${contextPath}/recipe/recipeForm">recipes</a>
+	                    </li>
+	                    <li>
+	                    	<a onclick="scroll()">BoB.zip</a>
 	                    </li>
                     	<li>
                     		<a href="${contextPath}/member/loginForm">Login</a>

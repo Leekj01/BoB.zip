@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="mapper.recipe">
+	
+	<resultMap type="RecipeSummary" id="recipeSummary">
+      <result column="recipeId" property="recipeId"/>
+      <result column="recipeName" property="recipeName"/>
+      <result column="summary" property="summary"/>
+      <result column="nationName" property="nationName"/>
+      <result column="levelName" property=" levelName"/>
+      <result column="typeName" property="typeName"/>
+      <result column="memberId" property="memberId"/>
+      <result column="image" property="image"/>
+    </resultMap> 
+	
+	<select id="countRecipeSummary" resultType="int">
+		<![CDATA[
+			select count(*) from recipesummary 
+		]]>
+	</select>
+	
+	<select id="selectRecipeSummaryBoard" parameterType="com.bobzip.CRUD.recipe.model.Paging" resultType="recipeSummary">
+		<![CDATA[
+			SELECT * 
+			FROM recipesummary
+			WHERE recipeId >= #{start} AND recipeId <= #{end}
+		]]>
+	</select>
+</mapper>
