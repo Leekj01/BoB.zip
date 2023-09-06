@@ -16,7 +16,7 @@
 		<div class="containner">
 			<c:forEach var="recipeSummary" items="${recipeSummary}">
 				<div class="recipe">
-					<a href="${contextPath}/recipe/recipeInfo">
+					<a href="${contextPath}/recipe/recipeInfo?recipeId=${recipeSummary.recipeId}">
 						<img src="${contextPath}/resources/img/recipe/${recipeSummary.image}">
 						<h5>${recipeSummary.recipeName}</h5>
 						<p>${recipeSummary.summary}</p>

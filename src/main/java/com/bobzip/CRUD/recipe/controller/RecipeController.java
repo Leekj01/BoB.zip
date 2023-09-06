@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bobzip.CRUD.recipe.model.Paging;
 import com.bobzip.CRUD.recipe.model.service.RecipeService;
+import com.bobzip.CRUD.recipe.model.vo.Ingredient;
+import com.bobzip.CRUD.recipe.model.vo.RecipeInfo;
 import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
 
 @Controller("recipeController")
@@ -33,11 +35,30 @@ public class RecipeController {
 			cntPerPage = "16";
 		}
 		paging = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		System.out.println(paging.getStart());
-		System.out.println(paging.getEnd());
 		mav.addObject("paging", paging);
 		mav.addObject("recipeSummary", recipeService.selectBoard(paging));
 		mav.setViewName("recipe/recipeHome");
+		return mav;
+	}
+	
+	@RequestMapping("/recipeInfo")
+	public ModelAndView recipeInfo(ModelAndView mav,
+			@RequestParam("recipeId")String recipeId) {
+		System.out.println(recipeId);
+		List<RecipeInfo> recipeInfo = recipeService.selectRecipeInfo(recipeId);
+		List<Ingredient> ingredient = recipeService.selectIngredients(recipeId);
+		mav.addObject("recipeInfo",recipeInfo);
+		mav.addObject("ingredient",ingredient);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		mav.setViewName("recipe/recipeInfo");
 		return mav;
 	}
 }

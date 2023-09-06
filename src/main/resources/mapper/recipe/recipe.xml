@@ -15,6 +15,20 @@
       <result column="memberId" property="memberId"/>
       <result column="image" property="image"/>
     </resultMap> 
+    
+    <resultMap type="RecipeInfo" id="recipeInfo">
+      <result column="rowNumber" property="rowNumber"/>
+      <result column="recipeId" property="recipeId"/>
+      <result column="cookingNumber" property="cookingNumber"/>
+      <result column="cookingStep" property="cookingStep"/>
+      <result column="image" property="image"/>
+    </resultMap> 
+    
+    <resultMap type="Ingredient" id="ingredeint">
+    	<result column="rowNumber" property="rowNumber"/>
+    	<result column="ingredientName" property="ingredientName"/>
+    	<result column="recipeId" property="recipeId"/>
+    </resultMap>
 	
 	<select id="countRecipeSummary" resultType="int">
 		<![CDATA[
@@ -27,6 +41,22 @@
 			SELECT * 
 			FROM recipesummary
 			WHERE recipeId >= #{start} AND recipeId <= #{end}
+		]]>
+	</select>
+	
+	<select id="selectRecipeInfo" parameterType="String" resultType="recipeInfo">
+		<![CDATA[
+			SELECT *
+			FROM recipeinfo
+			WHERE recipeId = #{recipeId}
+		]]>
+	</select>
+	
+	<select id="selectIngredients" parameterType="String" resultType="ingredient">
+		<![CDATA[
+			SELECT *
+			FROM ingredient
+			WHERE recipeId = #{recipeId}
 		]]>
 	</select>
 </mapper>
