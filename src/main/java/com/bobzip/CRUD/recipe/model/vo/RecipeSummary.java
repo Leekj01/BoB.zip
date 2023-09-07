@@ -18,4 +18,15 @@ public class RecipeSummary {
 	private String typeName;
 	private String memberId;
 	private String image;
+	
+	public RecipeSummary (String recipeName, String summary, String nationName,
+			String levelName, String typeName, String memberId, String image) {
+		this.recipeName = recipeName;
+		this.summary = summary;
+		this.nationName = nationName;
+		this.levelName = levelName;
+		this.typeName = typeName;
+		this.memberId = memberId;
+		this.image = image;
+	}
 }

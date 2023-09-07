@@ -37,4 +37,24 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDAO.selectIngredients(recipeId);
 	}
 
+	@Override
+	public void insertRecipeSummary(RecipeSummary recipeSummary) {
+		recipeDAO.insertRecipeSummary(recipeSummary);
+	}
+
+	@Override
+	public int getRecipeId() {
+		return recipeDAO.getRecipeId();
+	}
+
+	@Override
+	public void insertIngredient(Ingredient ingredient_) {
+		recipeDAO.insertIngredient(ingredient_);
+	}
+
+	@Override
+	public void insertRecipeInfo(RecipeInfo recipeInfo) {
+		recipeDAO.insertRecipeInfo(recipeInfo);
+	}
+
 }

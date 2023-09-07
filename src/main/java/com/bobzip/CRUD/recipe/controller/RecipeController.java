@@ -1,5 +1,6 @@
 package com.bobzip.CRUD.recipe.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -68,12 +69,43 @@ public class RecipeController {
 	
 	@RequestMapping("/recipeUpload")
 	public ModelAndView recipeUpload(ModelAndView mav,
-			@ModelAttribute Ingredient ingredient,
-			@ModelAttribute RecipeSummary recipeSummary,
-			@ModelAttribute RecipeInfo recipeInfo,
+			@RequestParam("memberId") String memberId,
+			@RequestParam("recipeName") String recipeName,
+			@RequestParam("summary") String summary,
+			@RequestParam("typeName") String typeName,
+			@RequestParam("nationName") String nationName,
+			@RequestParam("levelName") String levelName,
+			@RequestParam("ingredientName") String ingredientName,
+			@RequestParam("cookingStep") String cookingStep,
 			@RequestParam("imageFile") MultipartFile imageFile) throws Exception {
 		
+		//파일 업로드
+		String uploadFolder = "D:\\LYH\\BoB.zip\\BoB.zip\\src\\main\\webapp\\resources\\img\\recipe";
+		String imageName = imageFile.getOriginalFilename();
+		File saveFile = new File(uploadFolder, imageName);
+		try {
+			imageFile.transferTo(saveFile);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
-		return mav;
+		//데이터베이스에 데이터 넣기
+		String [] ingredientsName = ingredientName.split(",");
+		String [] cookingSteps = cookingStep.split(",");
+		
+		RecipeSummary recipeSummary = new RecipeSummary(recipeName,summary,nationName,levelName,typeName,memberId,imageName);
+		recipeService.insertRecipeSummary(recipeSummary);
+		int recipeId = recipeService.getRecipeId();
+		
+		for (String name : ingredientsName) {
+			Ingredient ingredient_ = new Ingredient(name, recipeId);
+			recipeService.insertIngredient(ingredient_);
+		}
+
+		for (int i = 0; i < cookingSteps.length; i++) {
+			RecipeInfo recipeInfo = new RecipeInfo(recipeId,i+1,cookingSteps[i]);
+			recipeService.insertRecipeInfo(recipeInfo);
+		}
+		return null;
 	}
 }

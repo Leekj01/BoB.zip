@@ -14,5 +14,10 @@ public class RecipeInfo {
 	private int recipeId;
 	private int cookingNumber;
 	private String cookingStep;
-	private String image;
+	
+	public RecipeInfo (int recipeId, int cookingNumber,String cookingStep) {
+		this.recipeId = recipeId;
+		this.cookingNumber = cookingNumber;
+		this.cookingStep = cookingStep;
+	}
 }

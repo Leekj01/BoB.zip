@@ -17,4 +17,12 @@ public interface RecipeService {
 
 	List<Ingredient> selectIngredients(String recipeId);
 
+	void insertRecipeSummary(RecipeSummary recipeSummary);
+
+	int getRecipeId();
+
+	void insertIngredient(Ingredient ingredient_);
+
+	void insertRecipeInfo(RecipeInfo recipeInfo);
+
 }

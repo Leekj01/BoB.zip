@@ -13,4 +13,9 @@ public class Ingredient {
 	private int rowNumber;
 	private String ingredientName;
 	private int recipeId;
+	
+	public Ingredient (String ingredientName, int recipeId) {
+		this.ingredientName = ingredientName;
+		this.recipeId = recipeId;
+	}
 }

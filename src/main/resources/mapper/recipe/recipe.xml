@@ -59,4 +59,32 @@
 			WHERE recipeId = #{recipeId}
 		]]>
 	</select>
+	
+	<insert id="insertRecipeSummary" parameterType="recipeSummary">
+		<![CDATA[
+			INSERT recipesummary
+			(recipeName,summary,nationName,levelName,typeName,memberId,image)
+			values (#{recipeName},#{summary},#{nationName},#{levelName},#{typeName},#{memberId},#{image})
+		]]>
+	</insert>
+	
+	<select id="getMaxRecipeId" resultType="int">
+		<![CDATA[
+			select max(recipeId) from recipesummary
+		]]>
+	</select>
+	
+	<insert id="insertIngredient" parameterType="ingredient">
+		<![CDATA[
+			INSERT ingredient (ingredientName,recipeId) 
+			VALUES (#{ingredientName},#{recipeId})
+		]]>
+	</insert>
+	
+	<insert id="insertRecipeInfo" parameterType="recipeInfo">
+		<![CDATA[
+			INSERT recipeinfo (recipeId, cookingNumber, cookingStep)
+			VALUES (#{recipeId},#{cookingNumber},#{cookingStep})
+		]]>
+	</insert>
 </mapper>
