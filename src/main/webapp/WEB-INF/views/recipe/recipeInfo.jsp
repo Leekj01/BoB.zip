@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <body>
 	<c:forEach items="${ingredient}" var="ingredient">
 		<p>${ingredient.ingredientName}</p>
@@ -17,4 +18,5 @@
 		<p>${recipeInfo.cookingStep}</p>
 	</c:forEach>
 </body>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </html>

@@ -13,7 +13,7 @@
 	<header id="top">
         <div class="container">
             <div class="logo">
-                <a href=""><img src="${contextPath}/resources/img/logo-baikal.png" alt=""></a>
+                <a href="${contextPath}/"><img src="${contextPath}/resources/img/logo-baikal.png" alt=""></a>
             </div>
             <div class="nav">
                 <ul class="menu">
@@ -23,6 +23,9 @@
 	                    </li>
 	                    <li>
 	                        <a href="${contextPath}/recipe/recipeForm">recipes</a>
+	                    </li>
+	                    <li>
+	                        <a href="${contextPath}/recipe/recipeUploadForm?memberId=${memberLoggedIn}">recipes</a>
 	                    </li>
 	                    <li>
 	                        <a href="${contextPath}/fridge/myFridgeForm">MyFridge</a>

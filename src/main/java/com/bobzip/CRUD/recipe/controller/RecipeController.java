@@ -2,10 +2,15 @@ package com.bobzip.CRUD.recipe.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bobzip.CRUD.recipe.model.Paging;
@@ -49,16 +54,26 @@ public class RecipeController {
 		List<Ingredient> ingredient = recipeService.selectIngredients(recipeId);
 		mav.addObject("recipeInfo",recipeInfo);
 		mav.addObject("ingredient",ingredient);
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		mav.setViewName("recipe/recipeInfo");
+		return mav;
+	}
+	
+	@RequestMapping("/recipeUploadForm")
+	public ModelAndView recipeUploadForm(HttpSession session, ModelAndView mav) {
+		String memberId = (String)session.getAttribute("memberLoggedIn");
+		mav.addObject("memberLoggedIn", memberId);
+		mav.setViewName("recipe/recipeUploadForm");
+		return mav;
+	}
+	
+	@RequestMapping("/recipeUpload")
+	public ModelAndView recipeUpload(ModelAndView mav,
+			@ModelAttribute Ingredient ingredient,
+			@ModelAttribute RecipeSummary recipeSummary,
+			@ModelAttribute RecipeInfo recipeInfo,
+			@RequestParam("imageFile") MultipartFile imageFile) throws Exception {
+		
+		
 		return mav;
 	}
 }
