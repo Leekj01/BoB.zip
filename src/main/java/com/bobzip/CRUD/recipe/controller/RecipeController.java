@@ -59,6 +59,28 @@ public class RecipeController {
 		return mav;
 	}
 	
+	@RequestMapping("/recipeInfoComments")
+	public ModelAndView recipeInfoComment(ModelAndView mav,
+			@RequestParam("recipeId") int recipeId,
+			@RequestParam("memberId") String memberId,
+			@RequestParam("memberNick") String memberNick,
+			@RequestParam("replyComment") String replyComment) {
+			System.out.println("레시피댓글");
+			RecipeComment comment = new RecipeComment();
+	        comment.setRecipeId(recipeId);
+	        comment.setMemberId(memberId);
+	        comment.setMemberNick(memberNick);
+	        comment.setComment(replyComment);
+	        
+	        recipeService.saveComment(comment);
+	        
+	        List<RecipeComment> comments = recipeService.getCommentsByRecipeId(recipeId);
+	        mav.addObject("comments", comments);
+
+	        mav.setViewName("redirect:/recipe/recipeInfo?recipeId=" + recipeId);
+	        return mav;
+	}
+	
 	@RequestMapping("/recipeUploadForm")
 	public ModelAndView recipeUploadForm(HttpSession session, ModelAndView mav) {
 		String memberId = (String)session.getAttribute("memberLoggedIn");
