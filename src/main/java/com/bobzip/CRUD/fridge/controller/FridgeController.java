@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bobzip.CRUD.fridge.model.service.FridgeService;
 import com.bobzip.CRUD.fridge.model.vo.Fridge;
+import com.bobzip.CRUD.recipe.model.service.RecipeService;
 
 @Controller("fridgeController")
 @RequestMapping("/fridge")
@@ -26,6 +27,8 @@ public class FridgeController {
 	
 	@Autowired
 	private FridgeService fridgeService;
+	@Autowired
+	private RecipeService recipeService;
 	
 	@RequestMapping(value = "/myFridgeForm", method = RequestMethod.GET)
 	public ModelAndView myFridge(ModelAndView mav, HttpSession session) {
@@ -61,5 +64,10 @@ public class FridgeController {
 		fridgeService.deleteFridge(rowNumber);
 		
 		return "redirect:/fridge/myFridgeForm";
+	}
+	
+	@RequestMapping(value="/searchRecipe.do", method=RequestMethod.GET)
+	public ModelAndView searchRecipe() {
+		return null;
 	}
 }
