@@ -27,8 +27,6 @@ public class FridgeController {
 	
 	@Autowired
 	private FridgeService fridgeService;
-	@Autowired
-	private RecipeService recipeService;
 	
 	@RequestMapping(value = "/myFridgeForm", method = RequestMethod.GET)
 	public ModelAndView myFridge(ModelAndView mav, HttpSession session) {
