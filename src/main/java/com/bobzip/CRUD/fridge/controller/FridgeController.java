@@ -67,7 +67,13 @@ public class FridgeController {
 	}
 	
 	@RequestMapping(value="/searchRecipe.do", method=RequestMethod.GET)
-	public ModelAndView searchRecipe() {
+	public ModelAndView searchRecipe(ModelAndView mav,
+								@RequestParam("myFridge")Fridge myFridge) {
+		
+		
+		
+		
+		
 		return null;
 	}
 }
