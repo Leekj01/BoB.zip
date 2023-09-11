@@ -85,6 +85,7 @@ public class RecipeController {
 	        return mav;
 	}
 	
+	
 	@RequestMapping("/recipeUploadForm")
 	public ModelAndView recipeUploadForm(HttpSession session, ModelAndView mav) {
 		String memberId = (String)session.getAttribute("memberLoggedIn");

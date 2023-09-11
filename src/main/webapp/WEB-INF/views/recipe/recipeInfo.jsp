@@ -41,7 +41,10 @@
 			<c:forEach items="${recipeComment}" var="comment">
 				<li>${comment.memberNick}</li>
 				<li>${comment.replyComment}</li>
-				
+				<c:if test="${comment.memberId eq memberLoggedIn}">
+				<button onclick="updateComment">수정</button>
+				<button onclick="deleteComment">삭제</button>
+				</c:if>
 			</c:forEach>
 		</ul>
 </body>
