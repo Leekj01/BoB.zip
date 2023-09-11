@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.bobzip.CRUD.fridge.model.dao.FridgeDAO;
 import com.bobzip.CRUD.fridge.model.vo.Fridge;
+import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
 
 @Service("fridgeService")
 public class FridgeServiceImpl implements FridgeService {
@@ -35,6 +36,11 @@ public class FridgeServiceImpl implements FridgeService {
 	@Override
 	public void deleteFridge(int rowNumber) {
 		fridgeDAO.deleteMyFridge(rowNumber);
+	}
+
+	@Override
+	public List<RecipeSummary> searchRecipe(List<String> ingredients) {
+		return fridgeDAO.searchRecipe(ingredients);
 	}
 	
 }

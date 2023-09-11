@@ -132,7 +132,7 @@
             </tr>
         </c:forEach>
     </table>
-    <a href="${contextPath}/fridge/searchRecipe.do?${myFridge}}">냉장고 재료로 뭘 만들지?</a>
+    <a href="${contextPath}/fridge/searchRecipe.do">냉장고 재료로 뭘 만들지?</a>
     <div class="selectArea" style="border: 1px solid black;">
 		<div class="searchbox">
 	        <label>재료: <input type="text" id="search" onkeyup="filter()" placeholder="재료를 입력하세요"></label>

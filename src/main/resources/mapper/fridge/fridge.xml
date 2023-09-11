@@ -10,6 +10,17 @@
 		<result property="memberId" column="memberId" />
 		<result property="ingredientName" column="ingredientName" />
 	</resultMap>
+	
+	<resultMap type="RecipeSummary" id="recipeSummary">
+      <result column="recipeId" property="recipeId"/>
+      <result column="recipeName" property="recipeName"/>
+      <result column="summary" property="summary"/>
+      <result column="nationName" property="nationName"/>
+      <result column="levelName" property=" levelName"/>
+      <result column="typeName" property="typeName"/>
+      <result column="memberId" property="memberId"/>
+      <result column="image" property="image"/>
+    </resultMap>
 
 	<select id="selectMyFridge" parameterType="String" resultType="fridge">
 		<![CDATA[
@@ -34,4 +45,16 @@
 			delete from fridge where rowNumber=#{rowNumber}
 		]]>
 	</delete>
+	
+	<select id="searchRecipeId" parameterType="String" resultType="int">
+	    <![CDATA[
+	    	select distinct recipeId from ingredient where ingredientName=#{ingredientName}
+	    ]]>    
+	</select>
+	
+	<select id="searchRecipeSummary" parameterType="int" resultType="recipeSummary">
+		<![CDATA[
+	    	select distinct * from recipeSummary where recipeId=#{recipeId}
+	    ]]>  
+	</select>
 </mapper>

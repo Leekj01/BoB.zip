@@ -106,6 +106,7 @@ public class RecipeController {
 			RecipeInfo recipeInfo = new RecipeInfo(recipeId,i+1,cookingSteps[i]);
 			recipeService.insertRecipeInfo(recipeInfo);
 		}
-		return null;
+		mav.setViewName("home");
+		return mav;
 	}
 }
