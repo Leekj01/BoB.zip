@@ -20,11 +20,12 @@
 	
 	<!-- 댓글이력폼 -->
 	<c:choose>
-		<!-- 로그인시 댓글 입력창 -->
 		<c:when test="${not empty memberLoggedIn}">
 			<div id="replysession">
 				<form action="${contextPath}/recipe/recipeInfoComments" method="post" >
-				<input name="recipeId" value="${recipeId}" type="hidden" />
+				<c:forEach items="${recipeInfo}" var="recipeInfo">
+				<input name="recipeId" value="${recipeInfo.recipeId}" type="hidden" />
+				</c:forEach>
 				<input name="memberId" value="${memberLoggedIn}" type="hidden" />
                 <input name="memberNick" value="${memberNick}" type="hidden" /><br>
                 <textarea name="replyComment" id="replyComment" rows="5" cols="50" placeholder="댓글을 입력해주세요"></textarea>
@@ -34,15 +35,15 @@
 				</form>
 			</div>
 		</c:when>
-		<c:otherwise>
-			<h3>댓글</h3>
-			<ul>
-				<c:forEach items="${comments}" var="comment">
-					<li>${comment}</li>
-				</c:forEach>
-			</ul>
-		</c:otherwise>
 	</c:choose>
+	<h3>댓글</h3>
+		<ul>
+			<c:forEach items="${recipeComment}" var="comment">
+				<li>${comment.memberNick}</li>
+				<li>${comment.replyComment}</li>
+				
+			</c:forEach>
+		</ul>
 </body>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </html>

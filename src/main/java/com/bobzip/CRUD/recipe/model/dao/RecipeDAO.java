@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bobzip.CRUD.recipe.model.Paging;
 import com.bobzip.CRUD.recipe.model.vo.Ingredient;
+import com.bobzip.CRUD.recipe.model.vo.RecipeComment;
 import com.bobzip.CRUD.recipe.model.vo.RecipeInfo;
 import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
 
@@ -25,4 +26,7 @@ public interface RecipeDAO {
 
 	void insertRecipeInfo(RecipeInfo recipeInfo);
 
+	void insertComment(RecipeComment recipecomment);
+	
+	List<RecipeComment> recipecomments(int recipeId);
 }

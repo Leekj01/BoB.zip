@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bobzip.CRUD.recipe.model.Paging;
 import com.bobzip.CRUD.recipe.model.vo.Ingredient;
+import com.bobzip.CRUD.recipe.model.vo.RecipeComment;
 import com.bobzip.CRUD.recipe.model.vo.RecipeInfo;
 import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
 
@@ -56,5 +57,14 @@ public class RecipeDAOImpl implements RecipeDAO{
 	public void insertRecipeInfo(RecipeInfo recipeInfo) {
 		sqlSession.insert("mapper.recipe.insertRecipeInfo",recipeInfo);
 	}
-
+	
+	@Override
+	public void insertComment(RecipeComment recipecomment) {
+		sqlSession.insert("mapper.recipe.insertRecipeComment", recipecomment);
+	}
+	
+	@Override
+	public List<RecipeComment> recipecomments(int recipeId){
+		return sqlSession.selectList("mapper.recipe.recipecomments", recipeId);
+	}
 }

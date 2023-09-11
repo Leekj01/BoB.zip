@@ -17,8 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bobzip.CRUD.recipe.model.Paging;
 import com.bobzip.CRUD.recipe.model.service.RecipeService;
 import com.bobzip.CRUD.recipe.model.vo.Ingredient;
+import com.bobzip.CRUD.recipe.model.vo.RecipeComment;
 import com.bobzip.CRUD.recipe.model.vo.RecipeInfo;
 import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
+
 
 @Controller("recipeController")
 @RequestMapping("/recipe")
@@ -53,6 +55,8 @@ public class RecipeController {
 		System.out.println(recipeId);
 		List<RecipeInfo> recipeInfo = recipeService.selectRecipeInfo(recipeId);
 		List<Ingredient> ingredient = recipeService.selectIngredients(recipeId);
+		List<RecipeComment> recipeComment = recipeService.getCommentsByRecipeId(Integer.parseInt(recipeId));
+		mav.addObject("recipeComment", recipeComment);
 		mav.addObject("recipeInfo",recipeInfo);
 		mav.addObject("ingredient",ingredient);
 		mav.setViewName("recipe/recipeInfo");
@@ -66,16 +70,16 @@ public class RecipeController {
 			@RequestParam("memberNick") String memberNick,
 			@RequestParam("replyComment") String replyComment) {
 			System.out.println("레시피댓글");
-			RecipeComment comment = new RecipeComment();
-	        comment.setRecipeId(recipeId);
-	        comment.setMemberId(memberId);
-	        comment.setMemberNick(memberNick);
-	        comment.setComment(replyComment);
+			RecipeComment recipecomment = new RecipeComment();
+			recipecomment.setRecipeId(recipeId);
+			recipecomment.setMemberId(memberId);
+			recipecomment.setMemberNick(memberNick);
+			recipecomment.setReplyComment(replyComment);
 	        
-	        recipeService.saveComment(comment);
+	        recipeService.insertComment(recipecomment);
 	        
-	        List<RecipeComment> comments = recipeService.getCommentsByRecipeId(recipeId);
-	        mav.addObject("comments", comments);
+	        List<RecipeComment> recipecomments = recipeService.getCommentsByRecipeId(recipeId);
+	        mav.addObject("Recipecomments", recipecomments);
 
 	        mav.setViewName("redirect:/recipe/recipeInfo?recipeId=" + recipeId);
 	        return mav;

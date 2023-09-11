@@ -29,6 +29,14 @@
     	<result column="ingredientName" property="ingredientName"/>
     	<result column="recipeId" property="recipeId"/>
     </resultMap>
+    
+    <resultMap type="RecipeComment" id="recipeComment">
+    	<result column="commentNo" property="commentNo"/>
+    	<result column="recipeId" property="recipeId"/>
+    	<result column="memberId" property="memberId"/>
+    	<result column="memberNick" property="memberNick"/>
+    	<result column="replyComment" property="replyComment"/>
+    </resultMap>
 	
 	<select id="countRecipeSummary" resultType="int">
 		<![CDATA[
@@ -87,4 +95,19 @@
 			VALUES (#{recipeId},#{cookingNumber},#{cookingStep})
 		]]>
 	</insert>
+	
+	<insert id="insertRecipeComment" parameterType="recipeComment">
+		<![CDATA[
+			INSERT recipecomment (recipeId, memberId, memberNick, replyComment)
+			VALUES (#{recipeId}, #{memberId}, #{memberNick}, #{replyComment})
+		]]>
+	</insert>
+	
+	<select id="recipecomments" parameterType="int" resultType="recipeComment">
+		<![CDATA[
+			SELECT *
+			FROM recipecomment
+			WHERE recipeId = #{recipeId}
+		]]>
+	</select>
 </mapper>
