@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.bobzip.CRUD.fridge.model.vo.Fridge;
+import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
 
 public interface FridgeDAO {
 
@@ -14,5 +15,7 @@ public interface FridgeDAO {
 	void insertMyFridge(List<Fridge> ingredients);
 
 	void deleteMyFridge(int rowNumber);
+
+	List<RecipeSummary> searchRecipe(List<String> ingredients);
 
 }

@@ -85,6 +85,8 @@ public class RecipeDAOImpl implements RecipeDAO{
 	    return sqlSession.update("mapper.recipe.recipecommentsUpdate", recipecommentsUpdate) > 0;
 	}
 
-	
-	
+	public RecipeSummary selectSummary(String recipeId) {
+		return sqlSession.selectOne("mapper.recipe.selectSummary", recipeId);
+	}
+
 }

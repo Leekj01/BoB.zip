@@ -34,5 +34,6 @@ public interface RecipeService {
 
 	boolean editComment(int commentNo, String replyComment);
 
+	RecipeSummary selectSummary(String recipeId);
 
 }

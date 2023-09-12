@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.bobzip.CRUD.fridge.model.vo.Fridge;
+import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
 
 public interface FridgeService {
 
@@ -15,6 +16,8 @@ public interface FridgeService {
 	void addFridge(List<Fridge> ingredients);
 
 	void deleteFridge(int rowNumber);
+
+	List<RecipeSummary> searchRecipe(List<String> ingredients);
 
 
 }

@@ -33,4 +33,7 @@ public interface RecipeDAO {
 	boolean recipecommentsDelete(int commentNo);
 
 	boolean recipecommentsUpdate(int commentNo, String replyComment);
+  
+	RecipeSummary selectSummary(String recipeId);
+
 }

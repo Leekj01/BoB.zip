@@ -55,11 +55,12 @@ public class RecipeController {
 	@RequestMapping("/recipeInfo")
 	public ModelAndView recipeInfo(ModelAndView mav,
 			@RequestParam("recipeId")String recipeId) {
-		System.out.println(recipeId);
+		RecipeSummary recipeSummary = recipeService.selectSummary(recipeId);
 		List<RecipeInfo> recipeInfo = recipeService.selectRecipeInfo(recipeId);
 		List<Ingredient> ingredient = recipeService.selectIngredients(recipeId);
 		List<RecipeComment> recipeComment = recipeService.getCommentsByRecipeId(Integer.parseInt(recipeId));
 		mav.addObject("recipeComment", recipeComment);
+		mav.addObject("recipeSummary",recipeSummary);
 		mav.addObject("recipeInfo",recipeInfo);
 		mav.addObject("ingredient",ingredient);
 		mav.setViewName("recipe/recipeInfo");
@@ -157,6 +158,9 @@ public class RecipeController {
 			RecipeInfo recipeInfo = new RecipeInfo(recipeId,i+1,cookingSteps[i]);
 			recipeService.insertRecipeInfo(recipeInfo);
 		}
-		return null;
+		mav.setViewName("home");
+		return mav;
 	}
+	
+	
 }

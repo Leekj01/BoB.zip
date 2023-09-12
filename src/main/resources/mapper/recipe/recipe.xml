@@ -97,6 +97,7 @@
 		]]>
 	</insert>
 	
+
 	<insert id="insertRecipeComment" parameterType="recipeComment">
 		<![CDATA[
 			INSERT recipecomment (recipeId, memberId, memberNick, replyComment)
@@ -126,4 +127,11 @@
 			WHERE commentNo = #{commentNo} 
 		]]>
 	</update>
+
+	<select id="selectSummary" parameterType="String" resultType="recipeSummary">
+		<![CDATA[
+			SELECT * FROM recipesummary where recipeId=#{recipeId}
+		]]>
+	</select>
+
 </mapper>

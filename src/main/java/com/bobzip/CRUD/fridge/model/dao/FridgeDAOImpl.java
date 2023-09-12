@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bobzip.CRUD.fridge.model.vo.Fridge;
+import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
 
 @Repository("fridgeDAO")
 public class FridgeDAOImpl implements FridgeDAO {
@@ -36,6 +37,19 @@ public class FridgeDAOImpl implements FridgeDAO {
 	@Override
 	public void deleteMyFridge(int rowNumber) {
 		sqlSession.delete("mapper.fridge.deleteMyFridge", rowNumber);
+	}
+
+	@Override
+	public List<RecipeSummary> searchRecipe( List<String> ingredients) {
+		List<RecipeSummary> searchingResult = new ArrayList<RecipeSummary>();
+		for (String ingredientName : ingredients) {
+			List<Integer> recipeIds = sqlSession.selectList("mapper.fridge.searchRecipeId", ingredientName);
+			for (int recipeId : recipeIds) {
+				RecipeSummary summary = sqlSession.selectOne("mapper.fridge.searchRecipeSummary", recipeId);
+				searchingResult.add(summary);
+			}
+		}
+		return searchingResult;
 	}
 	
 	

@@ -79,4 +79,9 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 	
 	
+	public RecipeSummary selectSummary(String recipeId) {
+		return recipeDAO.selectSummary(recipeId);
+	}
+
+	
 }
