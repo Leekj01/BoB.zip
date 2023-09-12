@@ -67,4 +67,16 @@ public class RecipeServiceImpl implements RecipeService{
 	public List<RecipeComment> getCommentsByRecipeId(int recipeId){
 		return recipeDAO.recipecomments(recipeId);
 	}
+
+	@Override
+	public boolean deleteComment(int commentNo) {
+		return recipeDAO.recipecommentsDelete(commentNo);
+	}
+
+	@Override
+	public boolean editComment(int commentNo, String replyComment) {
+		return recipeDAO.recipecommentsUpdate(commentNo, replyComment);
+	}
+	
+	
 }

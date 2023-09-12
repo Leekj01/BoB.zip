@@ -38,6 +38,7 @@
     	<result column="replyComment" property="replyComment"/>
     </resultMap>
 	
+	
 	<select id="countRecipeSummary" resultType="int">
 		<![CDATA[
 			select count(*) from recipesummary 
@@ -110,4 +111,19 @@
 			WHERE recipeId = #{recipeId}
 		]]>
 	</select>
+	
+	<delete id="recipecommentsDelete" parameterType="int">
+		<![CDATA[
+			DELETE FROM recipecomment
+			WHERE commentNo = #{commentNo}
+		]]>
+	</delete>
+	
+	<update id="recipecommentsUpdate" parameterType="java.util.Map">
+		<![CDATA[
+			UPDATE recipecomment 
+			SET replyComment = #{replyComment}
+			WHERE commentNo = #{commentNo} 
+		]]>
+	</update>
 </mapper>

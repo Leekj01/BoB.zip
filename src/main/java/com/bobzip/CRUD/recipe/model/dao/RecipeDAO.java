@@ -29,4 +29,8 @@ public interface RecipeDAO {
 	void insertComment(RecipeComment recipecomment);
 	
 	List<RecipeComment> recipecomments(int recipeId);
+
+	boolean recipecommentsDelete(int commentNo);
+
+	boolean recipecommentsUpdate(int commentNo, String replyComment);
 }

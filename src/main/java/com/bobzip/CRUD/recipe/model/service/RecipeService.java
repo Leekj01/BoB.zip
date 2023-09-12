@@ -30,5 +30,9 @@ public interface RecipeService {
 
 	List<RecipeComment> getCommentsByRecipeId(int recipeId);
 
+	boolean deleteComment(int commentNo);
+
+	boolean editComment(int commentNo, String replyComment);
+
 
 }

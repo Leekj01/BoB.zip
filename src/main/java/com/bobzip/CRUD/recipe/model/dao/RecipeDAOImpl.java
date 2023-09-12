@@ -1,6 +1,8 @@
 package com.bobzip.CRUD.recipe.model.dao;
 
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,4 +69,22 @@ public class RecipeDAOImpl implements RecipeDAO{
 	public List<RecipeComment> recipecomments(int recipeId){
 		return sqlSession.selectList("mapper.recipe.recipecomments", recipeId);
 	}
+
+	@Override
+	public boolean recipecommentsDelete(int commentNo) {
+		int affectedRows = sqlSession.delete("mapper.recipe.recipecommentsDelete", commentNo);
+	    return affectedRows > 0;
+	}
+
+	@Override
+	public boolean recipecommentsUpdate(int commentNo, String replyComment) {
+		Map<String, Object> recipecommentsUpdate = new HashMap<String, Object>();
+		recipecommentsUpdate.put("commentNo", commentNo);
+		recipecommentsUpdate.put("replyComment", replyComment);
+
+	    return sqlSession.update("mapper.recipe.recipecommentsUpdate", recipecommentsUpdate) > 0;
+	}
+
+	
+	
 }
