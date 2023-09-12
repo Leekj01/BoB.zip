@@ -10,6 +10,7 @@ section h1 {
 }
 section .containner {
 	width: 1140px;
+	min-height : 800px;
 	margin: 0 auto 20px auto;
 	background-color: white;
 	border: 1px solid #e6e7e8;
@@ -21,6 +22,7 @@ section .containner {
 
 section .containner .recipe {
 	width: calc(25% - 10px);
+	height: 400px;
 }
 
 section .containner .recipe img {

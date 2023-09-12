@@ -25,4 +25,6 @@ public interface RecipeService {
 
 	void insertRecipeInfo(RecipeInfo recipeInfo);
 
+	RecipeSummary selectSummary(String recipeId);
+
 }

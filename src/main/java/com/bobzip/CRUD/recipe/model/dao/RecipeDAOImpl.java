@@ -57,4 +57,9 @@ public class RecipeDAOImpl implements RecipeDAO{
 		sqlSession.insert("mapper.recipe.insertRecipeInfo",recipeInfo);
 	}
 
+	@Override
+	public RecipeSummary selectSummary(String recipeId) {
+		return sqlSession.selectOne("mapper.recipe.selectSummary", recipeId);
+	}
+	
 }

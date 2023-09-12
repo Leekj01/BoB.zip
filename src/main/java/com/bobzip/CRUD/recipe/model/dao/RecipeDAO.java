@@ -25,4 +25,6 @@ public interface RecipeDAO {
 
 	void insertRecipeInfo(RecipeInfo recipeInfo);
 
+	RecipeSummary selectSummary(String recipeId);
+
 }

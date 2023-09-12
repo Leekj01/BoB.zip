@@ -21,12 +21,9 @@
 					<a href="${contextPath}/recipe/recipeInfo?recipeId=${recipeSummary.recipeId}">
 						<img src="${contextPath}/resources/img/recipe/${recipeSummary.image}">
 					</a>
-						<h5>${recipeSummary.recipeName}</h5>
+						<h3>${recipeSummary.recipeName}</h3>
 						<p>${recipeSummary.summary}</p>
-						<p>${recipeSummary.nationName}</p>
-						<p>${recipeSummary.levelName}</p>
-						<p>${recipeSummary.typeName}</p>
-					
+						<p>${recipeSummary.nationName},${recipeSummary.levelName},${recipeSummary.typeName}</p>
 				</div>
 			</c:forEach>
 		</div>

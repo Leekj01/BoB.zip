@@ -50,9 +50,10 @@ public class RecipeController {
 	@RequestMapping("/recipeInfo")
 	public ModelAndView recipeInfo(ModelAndView mav,
 			@RequestParam("recipeId")String recipeId) {
-		System.out.println(recipeId);
+		RecipeSummary recipeSummary = recipeService.selectSummary(recipeId);
 		List<RecipeInfo> recipeInfo = recipeService.selectRecipeInfo(recipeId);
 		List<Ingredient> ingredient = recipeService.selectIngredients(recipeId);
+		mav.addObject("recipeSummary",recipeSummary);
 		mav.addObject("recipeInfo",recipeInfo);
 		mav.addObject("ingredient",ingredient);
 		mav.setViewName("recipe/recipeInfo");
@@ -109,4 +110,6 @@ public class RecipeController {
 		mav.setViewName("home");
 		return mav;
 	}
+	
+	
 }

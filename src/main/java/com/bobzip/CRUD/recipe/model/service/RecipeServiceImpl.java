@@ -57,4 +57,11 @@ public class RecipeServiceImpl implements RecipeService{
 		recipeDAO.insertRecipeInfo(recipeInfo);
 	}
 
+	@Override
+	public RecipeSummary selectSummary(String recipeId) {
+		return recipeDAO.selectSummary(recipeId);
+	}
+
+	
+
 }

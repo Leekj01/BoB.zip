@@ -87,4 +87,10 @@
 			VALUES (#{recipeId},#{cookingNumber},#{cookingStep})
 		]]>
 	</insert>
+	
+	<select id="selectSummary" parameterType="String" resultType="recipeSummary">
+		<![CDATA[
+			SELECT * FROM recipesummary where recipeId=#{recipeId}
+		]]>
+	</select>
 </mapper>
