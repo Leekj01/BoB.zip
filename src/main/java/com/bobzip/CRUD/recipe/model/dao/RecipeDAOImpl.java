@@ -29,6 +29,8 @@ public class RecipeDAOImpl implements RecipeDAO{
 	public int countBoard() {
 		return sqlSession.selectOne("mapper.recipe.countRecipeSummary");
 	}
+	
+	
 
 	@Override
 	public List<RecipeInfo> selectRecipeInfo(String recipeId) {
