@@ -6,28 +6,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://kit.fontawesome.com/3e352a9905.js" crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<script src="https://kit.fontawesome.com/3e352a9905.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/recipeHome.css">
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/CommonHeader.jsp" %>
 <body>
 	<section class="recipes">
+		<h1>레시피</h1>
 		<div class="containner">
 			<c:forEach var="recipeSummary" items="${recipeSummary}">
 				<div class="recipe">
 					<a href="${contextPath}/recipe/recipeInfo?recipeId=${recipeSummary.recipeId}">
 						<img src="${contextPath}/resources/img/recipe/${recipeSummary.image}">
+					</a>
 						<h5>${recipeSummary.recipeName}</h5>
 						<p>${recipeSummary.summary}</p>
 						<p>${recipeSummary.nationName}</p>
 						<p>${recipeSummary.levelName}</p>
 						<p>${recipeSummary.typeName}</p>
-					</a>
+					
 				</div>
 			</c:forEach>
 		</div>
-		<div style="display: block; text-align: center;">		
+		<div class="pagination" style="display: block; text-align: center;">		
 			<c:if test="${paging.startPage != 1}">
 				<a href="${contextPath}/recipe/recipeForm?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
 			</c:if>
