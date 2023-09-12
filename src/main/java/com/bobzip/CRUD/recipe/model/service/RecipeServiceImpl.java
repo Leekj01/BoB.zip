@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.bobzip.CRUD.recipe.model.Paging;
 import com.bobzip.CRUD.recipe.model.dao.RecipeDAO;
 import com.bobzip.CRUD.recipe.model.vo.Ingredient;
+import com.bobzip.CRUD.recipe.model.vo.RecipeComment;
 import com.bobzip.CRUD.recipe.model.vo.RecipeInfo;
 import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
 
@@ -56,12 +57,31 @@ public class RecipeServiceImpl implements RecipeService{
 	public void insertRecipeInfo(RecipeInfo recipeInfo) {
 		recipeDAO.insertRecipeInfo(recipeInfo);
 	}
+	
+	@Override
+	public void insertComment(RecipeComment recipecomment) {
+		recipeDAO.insertComment(recipecomment);
+	}
+	
+	@Override
+	public List<RecipeComment> getCommentsByRecipeId(int recipeId){
+		return recipeDAO.recipecomments(recipeId);
+	}
 
 	@Override
+	public boolean deleteComment(int commentNo) {
+		return recipeDAO.recipecommentsDelete(commentNo);
+	}
+
+	@Override
+	public boolean editComment(int commentNo, String replyComment) {
+		return recipeDAO.recipecommentsUpdate(commentNo, replyComment);
+	}
+	
+	
 	public RecipeSummary selectSummary(String recipeId) {
 		return recipeDAO.selectSummary(recipeId);
 	}
 
 	
-
 }

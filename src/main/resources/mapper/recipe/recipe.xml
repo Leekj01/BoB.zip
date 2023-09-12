@@ -29,6 +29,15 @@
     	<result column="ingredientName" property="ingredientName"/>
     	<result column="recipeId" property="recipeId"/>
     </resultMap>
+    
+    <resultMap type="RecipeComment" id="recipeComment">
+    	<result column="commentNo" property="commentNo"/>
+    	<result column="recipeId" property="recipeId"/>
+    	<result column="memberId" property="memberId"/>
+    	<result column="memberNick" property="memberNick"/>
+    	<result column="replyComment" property="replyComment"/>
+    </resultMap>
+	
 	
 	<select id="countRecipeSummary" resultType="int">
 		<![CDATA[
@@ -88,9 +97,41 @@
 		]]>
 	</insert>
 	
+
+	<insert id="insertRecipeComment" parameterType="recipeComment">
+		<![CDATA[
+			INSERT recipecomment (recipeId, memberId, memberNick, replyComment)
+			VALUES (#{recipeId}, #{memberId}, #{memberNick}, #{replyComment})
+		]]>
+	</insert>
+	
+	<select id="recipecomments" parameterType="int" resultType="recipeComment">
+		<![CDATA[
+			SELECT *
+			FROM recipecomment
+			WHERE recipeId = #{recipeId}
+		]]>
+	</select>
+	
+	<delete id="recipecommentsDelete" parameterType="int">
+		<![CDATA[
+			DELETE FROM recipecomment
+			WHERE commentNo = #{commentNo}
+		]]>
+	</delete>
+	
+	<update id="recipecommentsUpdate" parameterType="java.util.Map">
+		<![CDATA[
+			UPDATE recipecomment 
+			SET replyComment = #{replyComment}
+			WHERE commentNo = #{commentNo} 
+		]]>
+	</update>
+
 	<select id="selectSummary" parameterType="String" resultType="recipeSummary">
 		<![CDATA[
 			SELECT * FROM recipesummary where recipeId=#{recipeId}
 		]]>
 	</select>
+
 </mapper>

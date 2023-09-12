@@ -27,6 +27,7 @@ import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
 @RequestMapping("/fridge")
 public class FridgeController {
 	
+	
 	@Autowired
 	private FridgeService fridgeService;
 	

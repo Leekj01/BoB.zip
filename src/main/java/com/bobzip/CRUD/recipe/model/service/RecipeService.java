@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bobzip.CRUD.recipe.model.Paging;
 import com.bobzip.CRUD.recipe.model.vo.Ingredient;
+import com.bobzip.CRUD.recipe.model.vo.RecipeComment;
 import com.bobzip.CRUD.recipe.model.vo.RecipeInfo;
 import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
 
@@ -24,6 +25,14 @@ public interface RecipeService {
 	void insertIngredient(Ingredient ingredient_);
 
 	void insertRecipeInfo(RecipeInfo recipeInfo);
+
+	void insertComment(RecipeComment recipecomment);
+
+	List<RecipeComment> getCommentsByRecipeId(int recipeId);
+
+	boolean deleteComment(int commentNo);
+
+	boolean editComment(int commentNo, String replyComment);
 
 	RecipeSummary selectSummary(String recipeId);
 
