@@ -36,4 +36,6 @@ public interface RecipeService {
 
 	RecipeSummary selectSummary(String recipeId);
 
+	List<RecipeSummary> selectSearchResult(String inputedRecipeName);
+
 }

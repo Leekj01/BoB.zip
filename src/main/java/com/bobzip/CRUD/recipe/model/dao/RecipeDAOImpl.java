@@ -89,4 +89,9 @@ public class RecipeDAOImpl implements RecipeDAO{
 		return sqlSession.selectOne("mapper.recipe.selectSummary", recipeId);
 	}
 
+	@Override
+	public List<RecipeSummary> selectSearchResult(String inputedRecipeName) {
+		return sqlSession.selectList("mapper.recipe.selectSearchResult",inputedRecipeName);
+	}
+
 }

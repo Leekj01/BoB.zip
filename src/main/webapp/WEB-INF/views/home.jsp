@@ -27,9 +27,9 @@ function result(){
         <div class="container">
             <p>배달어플 끄자!</p>
             <h1>이제 만들어먹자!</h1>
-            <form id="foodSearchForm" action="/your-controller-endpoint" method="GET">
+            <form id="foodSearchForm" action="${contextPath}/recipe/searchRecipe.do" method="GET">
 	            <div class="search-container">
-	                <input type="text" id="foodSearch" name="inputedFoodName" placeholder="만들고 싶은 음식 레시피를 검색하세요">
+	                <input type="text" id="foodSearch" name="inputedRecipeName" placeholder="만들고 싶은 음식 레시피를 검색하세요">
 	                <button type="submit" id="searchButton">검색</button>
 	            </div>
         	</form>
@@ -51,15 +51,22 @@ function result(){
                     <p>여러분의 냉장고에는 어떤 식재료가 있나요?<br>
                     지금 냉장고에 식재료를 업로드 해주세요. <br>
                     알맞은 레시피를 추천해드릴께요</p>
-                    <a href=""><p>냉장고 관리하기 ⟶</p></a>
+                    <c:choose>
+                    	<c:when test="${memberLoggedIn != null}">
+                    		<a href="${contextPath}/fridge/myFridgeForm">냉장고 관리하기 ⟶</p></a>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<a href="${contextPath}/member/loginForm">냉장고 관리하기 ⟶</p></a>
+                    	</c:otherwise>
+                    </c:choose>
                 </div>
                 <div class="about">
                     <img src="${contextPath}/resources/img/recipe.jpg" alt="">
                     <h5>레시피 찾기</h5>
                     <p>다양한 음식 레시피가 준비되어 있습니다. <br>
-                    재료를 입력하면 레시피를 찾아드려요 <br>
+                    음식이름 입력하면 레시피를 찾아드려요 <br>
                     오늘 저녁메뉴를 밥집에서 찾아보세요!</p>
-                    <a href=""><p>레시피 보러가기 ⟶</p></a>
+                    <a href="#"><p>레시피 검색하기 ⟶</p></a>
                 </div>
             </div>
         </div>

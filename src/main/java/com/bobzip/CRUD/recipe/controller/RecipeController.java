@@ -1,6 +1,7 @@
 package com.bobzip.CRUD.recipe.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -157,5 +158,15 @@ public class RecipeController {
 		return mav;
 	}
 	
-	
+	@RequestMapping("/searchRecipe.do")
+	public ModelAndView searchRecipe (ModelAndView mav,
+			@RequestParam("inputedRecipeName") String inputedRecipeName) {
+		inputedRecipeName = inputedRecipeName.trim();
+		List<RecipeSummary> searchResult = recipeService.selectSearchResult(inputedRecipeName);
+		Paging paging = new Paging(searchResult.size(), 1, 16);
+		mav.addObject("recipeSummary",searchResult);
+		mav.addObject("paging",paging);
+		mav.setViewName("recipe/recipeHome");
+		return mav;
+	}
 }

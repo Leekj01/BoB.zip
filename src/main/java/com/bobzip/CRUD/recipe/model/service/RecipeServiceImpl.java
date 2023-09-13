@@ -83,5 +83,10 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDAO.selectSummary(recipeId);
 	}
 
+	@Override
+	public List<RecipeSummary> selectSearchResult(String inputedRecipeName) {
+		return recipeDAO.selectSearchResult(inputedRecipeName);
+	}
+
 	
 }

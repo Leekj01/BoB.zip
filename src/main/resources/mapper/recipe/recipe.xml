@@ -133,5 +133,11 @@
 			SELECT * FROM recipesummary where recipeId=#{recipeId}
 		]]>
 	</select>
+	
+	<select id="selectSearchResult" parameterType="String" resultType="recipeSummary">
+		<![CDATA[
+			SELECT * FROM recipesummary WHERE recipeName LIKE CONCAT('%',#{inputedRecipeName},'%')
+		]]>
+	</select>
 
 </mapper>
