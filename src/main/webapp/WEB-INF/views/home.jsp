@@ -53,10 +53,10 @@ function result(){
                     알맞은 레시피를 추천해드릴께요</p>
                     <c:choose>
                     	<c:when test="${memberLoggedIn != null}">
-                    		<a href="${contextPath}/fridge/myFridgeForm">냉장고 관리하기 ⟶</p></a>
+                    		<a href="${contextPath}/fridge/myFridgeForm"><p>냉장고 관리하기 ⟶</p></a>
                     	</c:when>
                     	<c:otherwise>
-                    		<a href="${contextPath}/member/loginForm">냉장고 관리하기 ⟶</p></a>
+                    		<a href="${contextPath}/member/loginForm"><p>냉장고 관리하기 ⟶</p></a>
                     	</c:otherwise>
                     </c:choose>
                 </div>

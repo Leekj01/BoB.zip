@@ -1,6 +1,7 @@
 package com.bobzip.CRUD.recipe.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,8 +85,13 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public List<RecipeSummary> selectSearchResult(String inputedRecipeName) {
-		return recipeDAO.selectSearchResult(inputedRecipeName);
+	public List<RecipeSummary> selectSearchResult(Map parameter) {
+		return recipeDAO.selectSearchResult(parameter);
+	}
+
+	@Override
+	public int countSearchResult(String inputedRecipeName) {
+		return recipeDAO.countSearchResult(inputedRecipeName);
 	}
 
 	

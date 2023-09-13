@@ -134,10 +134,16 @@
 		]]>
 	</select>
 	
-	<select id="selectSearchResult" parameterType="String" resultType="recipeSummary">
+	<select id="selectSearchResult" parameterType="java.util.Map" resultType="recipeSummary">
 		<![CDATA[
 			SELECT * FROM recipesummary WHERE recipeName LIKE CONCAT('%',#{inputedRecipeName},'%')
+			AND recipeId >= #{paging.start} AND recipeId <= #{paging.end}
 		]]>
 	</select>
-
+	
+	<select id="countSearchResult" parameterType="String"  resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM recipesummary WHERE recipeName LIKE CONCAT('%',#{inputedRecipeName},'%')
+		]]>
+	</select>
 </mapper>
