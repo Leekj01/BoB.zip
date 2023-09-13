@@ -1,6 +1,7 @@
 package com.bobzip.CRUD.recipe.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.bobzip.CRUD.recipe.model.Paging;
 import com.bobzip.CRUD.recipe.model.vo.Ingredient;
@@ -35,5 +36,10 @@ public interface RecipeDAO {
 	boolean recipecommentsUpdate(int commentNo, String replyComment);
   
 	RecipeSummary selectSummary(String recipeId);
+	
+	int selectMyrecipeCount(String memberId);
 
+	List<RecipeSummary> selectAllMyrecipe(Map<String, Object> parameter);
+
+	RecipeSummary selectUpdateRecipe(String recipeId);
 }

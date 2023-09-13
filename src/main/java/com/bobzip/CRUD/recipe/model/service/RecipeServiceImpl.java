@@ -1,6 +1,7 @@
 package com.bobzip.CRUD.recipe.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,10 +79,24 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDAO.recipecommentsUpdate(commentNo, replyComment);
 	}
 	
-	
+	@Override
 	public RecipeSummary selectSummary(String recipeId) {
 		return recipeDAO.selectSummary(recipeId);
 	}
+	
+	@Override
+	public int myrecipecountBoard(String memberId) {
+		return recipeDAO.selectMyrecipeCount(memberId);
+	}
 
+	@Override
+	public List<RecipeSummary> myrecipeResult(Map<String, Object> parameter) {
+		return recipeDAO.selectAllMyrecipe(parameter);
+	}
+
+	@Override
+	public RecipeSummary updateMyRecipe(String recipeId) {
+		return recipeDAO.selectUpdateRecipe(recipeId);
+	}
 	
 }

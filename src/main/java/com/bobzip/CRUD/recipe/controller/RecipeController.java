@@ -1,7 +1,10 @@
 package com.bobzip.CRUD.recipe.controller;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -159,6 +162,44 @@ public class RecipeController {
 			recipeService.insertRecipeInfo(recipeInfo);
 		}
 		mav.setViewName("home");
+		return mav;
+	}
+	
+	@RequestMapping("/myrecipeForm")
+	public ModelAndView myRecipe(ModelAndView mav, HttpSession session, Paging paging,
+								@RequestParam(value="nowPage", required=false) String nowPage,
+								@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+		System.out.println("myrecipeform");
+		String memberId = (String)session.getAttribute("memberLoggedIn");
+		int total = recipeService.myrecipecountBoard(memberId);
+		System.out.println(total);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "16";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "16";
+		}
+		paging = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		Map<String, Object> parameter = new HashMap();
+		parameter.put("memberId", memberId);
+		parameter.put("paging", paging);
+		List<RecipeSummary> myrecipeResult = recipeService.myrecipeResult(parameter);
+		System.out.println(myrecipeResult.size());
+		mav.addObject("recipeSummary", myrecipeResult);
+		mav.addObject("paging",paging);
+		mav.setViewName("myrecipe/myRecipe");
+		return mav;
+	}
+	
+	@RequestMapping("/updatemyRecipe")
+	public ModelAndView updatemyRecipe(ModelAndView mav, 
+			@RequestParam("recipeId") String recipeId) {
+		RecipeSummary update = recipeService.updateMyRecipe(recipeId);
+		
+		mav.addObject("recipeSummary", update);
+		mav.setViewName("my"); 
 		return mav;
 	}
 	

@@ -133,5 +133,16 @@
 			SELECT * FROM recipesummary where recipeId=#{recipeId}
 		]]>
 	</select>
-
+	
+	<select id="countMyrecipeSummary" parameterType="String" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM recipesummary WHERE memberId = #{memberId} 
+		]]>
+	</select>
+	
+	<select id="selectAllMyrecipe" parameterType="java.util.Map" resultType="recipeSummary" >
+		<![CDATA[
+			SELECT * FROM recipesummary WHERE memberId = #{memberId}  
+		]]>		
+	</select>
 </mapper>

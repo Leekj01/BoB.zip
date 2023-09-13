@@ -1,6 +1,7 @@
 package com.bobzip.CRUD.recipe.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.bobzip.CRUD.recipe.model.Paging;
 import com.bobzip.CRUD.recipe.model.vo.Ingredient;
@@ -35,5 +36,11 @@ public interface RecipeService {
 	boolean editComment(int commentNo, String replyComment);
 
 	RecipeSummary selectSummary(String recipeId);
+	
+	int myrecipecountBoard(String memberId);
+
+	List<RecipeSummary> myrecipeResult(Map<String, Object> parameter);
+
+	RecipeSummary updateMyRecipe(String recipeId);
 
 }
