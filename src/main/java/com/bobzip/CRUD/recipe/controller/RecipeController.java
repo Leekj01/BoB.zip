@@ -160,10 +160,20 @@ public class RecipeController {
 	
 	@RequestMapping("/searchRecipe.do")
 	public ModelAndView searchRecipe (ModelAndView mav,
-			@RequestParam("inputedRecipeName") String inputedRecipeName) {
+			@RequestParam("inputedRecipeName") String inputedRecipeName,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
 		inputedRecipeName = inputedRecipeName.trim();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "16";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "16";
+		}
 		List<RecipeSummary> searchResult = recipeService.selectSearchResult(inputedRecipeName);
-		Paging paging = new Paging(searchResult.size(), 1, 16);
+		Paging paging = new Paging(searchResult.size(), Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		mav.addObject("recipeSummary",searchResult);
 		mav.addObject("paging",paging);
 		mav.setViewName("recipe/recipeHome");
