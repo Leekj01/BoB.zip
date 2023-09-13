@@ -23,7 +23,6 @@
 					</a>
 						<h3>${recipeSummary.recipeName}</h3>
 						<p>${recipeSummary.summary}</p>
-						<p>${recipeSummary.nationName},${recipeSummary.levelName},${recipeSummary.typeName}</p>
 				</div>
 			</c:forEach>
 		</div>

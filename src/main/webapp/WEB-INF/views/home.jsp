@@ -27,7 +27,12 @@ function result(){
         <div class="container">
             <p>배달어플 끄자!</p>
             <h1>이제 만들어먹자!</h1>
-            <button>Lean More</button>
+            <form id="foodSearchForm" action="/your-controller-endpoint" method="GET">
+	            <div class="search-container">
+	                <input type="text" id="foodSearch" name="inputedFoodName" placeholder="만들고 싶은 음식 레시피를 검색하세요">
+	                <button type="submit" id="searchButton">검색</button>
+	            </div>
+        	</form>
         </div>
     </section>
     <section class="introduce">

@@ -103,12 +103,7 @@ public class RecipeController {
 	@RequestMapping(value = "/editComment", method= RequestMethod.POST)
     public ResponseEntity<String> editComment(@RequestParam("commentNo") int commentNo,
                                              @RequestParam("replyComment") String replyComment) {
-		System.out.println("댓글 수정");
-        if (recipeService.editComment(commentNo, replyComment)) {
-            return ResponseEntity.ok("댓글이 수정되었습니다.");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 수정 실패");
-        }
+		return null;
     }
 	
 	@RequestMapping("/recipeUploadForm")
