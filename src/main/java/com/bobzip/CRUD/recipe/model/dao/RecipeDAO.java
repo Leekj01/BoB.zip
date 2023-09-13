@@ -41,4 +41,6 @@ public interface RecipeDAO {
 
 	int countSearchResult(String inputedRecipeName);
 
+	boolean editComment(RecipeComment recipeComment);
+
 }

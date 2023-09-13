@@ -94,5 +94,10 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDAO.countSearchResult(inputedRecipeName);
 	}
 
+	@Override
+	public boolean editComment(RecipeComment recipeComment) {
+		return recipeDAO.editComment(recipeComment);
+	}
+
 	
 }

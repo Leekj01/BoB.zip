@@ -103,12 +103,6 @@ public class RecipeController {
 		}
 	}
 	
-	@RequestMapping(value = "/editComment", method= RequestMethod.POST)
-    public ResponseEntity<String> editComment(@RequestParam("commentNo") int commentNo,
-                                             @RequestParam("replyComment") String replyComment) {
-		return null;
-    }
-	
 	@RequestMapping("/recipeUploadForm")
 	public ModelAndView recipeUploadForm(HttpSession session, ModelAndView mav) {
 		String memberId = (String)session.getAttribute("memberLoggedIn");
@@ -184,5 +178,16 @@ public class RecipeController {
 		mav.addObject("paging",paging);
 		mav.setViewName("recipe/recipeHome");
 		return mav;
+	}
+	
+	@RequestMapping(value="/editComment", method=RequestMethod.POST)
+	public ResponseEntity<String> editComment(@ModelAttribute RecipeComment recipeComment){
+		boolean success = recipeService.editComment(recipeComment);
+		System.out.println(success);
+		if (success) {
+			return ResponseEntity.ok("댓글이 수정되었습니다.");
+		} else {
+			return ResponseEntity.badRequest().body("댓글 수정에 실패했습니다.");
+		}
 	}
 }

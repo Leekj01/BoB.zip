@@ -100,4 +100,12 @@ public class RecipeDAOImpl implements RecipeDAO{
 		return sqlSession.selectOne("mapper.recipe.countSearchResult",inputedRecipeName);
 	}
 
+	@Override
+	public boolean editComment(RecipeComment recipeComment) {
+		System.out.println("d");
+		int updateCount = sqlSession.update("mapper.recipe.updateComment",recipeComment);
+		System.out.println(updateCount);
+		return updateCount > 0;
+	}
+
 }

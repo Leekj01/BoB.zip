@@ -146,4 +146,12 @@
 			SELECT COUNT(*) FROM recipesummary WHERE recipeName LIKE CONCAT('%',#{inputedRecipeName},'%')
 		]]>
 	</select>
+	
+	<update id="updateComment" parameterType="recipeComment">
+		<![CDATA[
+			UPDATE recipecomment 
+			SET replyComment=#{replyComment}
+			WHERE commentNo=#{commentNo} 
+		]]>
+	</update>
 </mapper>

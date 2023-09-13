@@ -41,4 +41,6 @@ public interface RecipeService {
 
 	int countSearchResult(String inputedRecipeName);
 
+	boolean editComment(RecipeComment recipeComment);
+
 }
