@@ -67,8 +67,7 @@
 					<input name="memberId" value="${memberLoggedIn}" type="hidden" />
 	                <input name="memberNick" value="${memberNick}" type="hidden" /><br>
 	                <textarea name="replyComment" id="replyComment" rows="5" cols="50" placeholder="댓글을 입력해주세요"></textarea>
-	                <input type="submit" value="댓글등록" />
-	                <input type="reset" value="다시작성" />
+	                <input type="submit" class="submitCommentButton" value="댓글등록" />
 					</form>
 				</div>
 			</c:when>
@@ -79,12 +78,12 @@
 				<ul>
 					<c:forEach items="${recipeComment}" var="comment">
 						<div class="commentContent">
-							<li>${comment.memberNick}<span>(${comment.memberId})</span></li>
-							<li>${comment.replyComment}</li>
+							<li id="nickName"><span>${comment.memberNick}</span></li>
 							<c:if test="${comment.memberId eq memberLoggedIn}">
-								<button onclick="openEditCommentModal('${comment.commentNo}', '${comment.replyComment}')">수정</button>
+								<button onclick="openEditCommentModal('${comment.commentNo}', '${comment.replyComment}')">수정</button>  |
 								<button onclick="deleteComment('${comment.commentNo}')">삭제</button>
 							</c:if>
+							<li>${comment.replyComment}</li>
 						</div>
 						<div class="editForm">
 							<li id="editCommentForm_${comment.commentNo}" style="display: none;">
