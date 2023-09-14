@@ -49,7 +49,7 @@
 		<![CDATA[
 			SELECT * 
 			FROM recipesummary
-			WHERE recipeId >= #{start} AND recipeId <= #{end}
+			LIMIT #{start},#{end}
 		]]>
 	</select>
 	

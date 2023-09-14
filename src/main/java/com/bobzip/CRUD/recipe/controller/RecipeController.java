@@ -32,6 +32,8 @@ import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
 @RequestMapping("/recipe")
 public class RecipeController {
 	
+	String search;
+	
 	@Autowired
 	private RecipeService recipeService;
 	
@@ -156,11 +158,14 @@ public class RecipeController {
 	
 	@RequestMapping("/searchRecipe.do")
 	public ModelAndView searchRecipe (ModelAndView mav,Paging paging,
-			@RequestParam("inputedRecipeName") String inputedRecipeName,
+			@RequestParam(value="inputedRecipeName", required=false) String inputedRecipeName,
 			@RequestParam(value="nowPage", required=false) String nowPage,
 			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
-		inputedRecipeName = inputedRecipeName.trim();
-		int total = recipeService.countSearchResult(inputedRecipeName);
+		if (inputedRecipeName != null) {
+			inputedRecipeName = inputedRecipeName.trim();
+			search = inputedRecipeName;
+		}
+		int total = recipeService.countSearchResult(search);
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "16";
@@ -172,11 +177,11 @@ public class RecipeController {
 		paging = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		Map parameter = new HashMap();
 		parameter.put("paging",paging);
-		parameter.put("inputedRecipeName",inputedRecipeName);
+		parameter.put("inputedRecipeName",search);
 		List<RecipeSummary> searchResult = recipeService.selectSearchResult(parameter);
 		mav.addObject("recipeSummary",searchResult);
 		mav.addObject("paging",paging);
-		mav.setViewName("recipe/recipeHome");
+		mav.setViewName("recipe/recipeSearch");
 		return mav;
 	}
 	

@@ -44,8 +44,8 @@ public class Paging {
 	
 	//쿼리에 달라고 요청하기위한 start, end 값 구하기
 	public void calcStartEnd(int nowPage, int cntPerPage) {
-		setEnd(nowPage * cntPage);
-		setStart(getEnd() - cntPerPage);
+		setEnd(16);
+		setStart(16*(nowPage-1));
 	}
 	
 }
