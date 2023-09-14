@@ -42,4 +42,14 @@ public interface RecipeDAO {
 	List<RecipeSummary> selectAllMyrecipe(Map<String, Object> parameter);
 
 	RecipeSummary selectUpdateRecipe(String recipeId);
+
+	boolean myrecipeImageDelete(String image);
+
+	List<Ingredient> updateMyRecipeIngredient(String recipeId);
+
+	List<RecipeInfo> updateMyRecipeInfo(String recipeId);
+
+	void updateMyRecipeSummary(RecipeSummary recipeSummary);
+
+	
 }

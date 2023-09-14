@@ -26,7 +26,7 @@
 						<p>${recipeSummary.summary}</p>
 						<p>${recipeSummary.nationName},${recipeSummary.levelName},${recipeSummary.typeName}</p>
 					
-					<a href="${contextPath}/recipe/updatemyRecipe?recipeId=${recipeSummary.recipeId}" class="edit-button">수정</a>
+					<a href="${contextPath}/recipe/updatemyRecipeForm?recipeId=${recipeSummary.recipeId}" class="edit-button">수정</a>
     				<a href="${contextPath}/recipe/deletemyRecipe?recipeId=${recipeSummary.recipeId}" class="delete-button">삭제</a>
 					
 				</div>

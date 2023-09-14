@@ -145,4 +145,18 @@
 			SELECT * FROM recipesummary WHERE memberId = #{memberId}  
 		]]>		
 	</select>
+	
+	<delete id="myrecipeImageDelete" parameterType="String" >
+		<![CDATA[
+			UPDATE recipesummary SET image="" WHERE image=#{image}
+		]]>
+	</delete>
+	
+	<update id="updateMyRecipeSummary" parameterType="recipeSummary">
+		<![CDATA[
+			UPDATE recipesummary SET recipeId = #{recipeId}, recipeName = #{recipeName}, summary = #{summary}, nationName = #{nationName},
+					levelName = #{levelName}, typeName = #{typeName}, memberId = #{memberId}, image = #{image}
+			WHERE recipeId = #{recipeId}
+		]]>
+	</update>
 </mapper>

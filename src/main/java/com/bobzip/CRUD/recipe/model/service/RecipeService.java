@@ -43,4 +43,14 @@ public interface RecipeService {
 
 	RecipeSummary updateMyRecipe(String recipeId);
 
+	boolean myrecipeImageDelete(String image);
+
+	List<Ingredient> updateMyRecipeIngredient(String recipeId);
+
+	List<RecipeInfo> updateMyRecipeInfo(String recipeId);
+
+	void updateMyRecipeSummary(RecipeSummary recipeSummary);
+
+	
+
 }

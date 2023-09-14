@@ -104,4 +104,26 @@ public class RecipeDAOImpl implements RecipeDAO{
 		return sqlSession.selectOne("mapper.recipe.selectSummary",recipeId);
 	}
 
+	@Override
+	public boolean myrecipeImageDelete(String image) {
+		int imageaffected = sqlSession.update("mapper.recipe.myrecipeImageDelete", image);
+		return imageaffected > 0;
+	}
+
+	@Override
+	public List<Ingredient> updateMyRecipeIngredient(String recipeId) {
+		return sqlSession.selectList("mapper.recipe.selectIngredients", recipeId);
+	}
+
+	@Override
+	public List<RecipeInfo> updateMyRecipeInfo(String recipeId) {
+		return sqlSession.selectList("mapper.recipe.selectRecipeInfo", recipeId);
+	}
+
+	@Override
+	public void updateMyRecipeSummary(RecipeSummary recipeSummary) {
+		sqlSession.update("mapper.recipe.updateMyRecipeSummary", recipeSummary);
+	}
+	
+	
 }

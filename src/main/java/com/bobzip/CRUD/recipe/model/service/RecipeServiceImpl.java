@@ -98,5 +98,27 @@ public class RecipeServiceImpl implements RecipeService{
 	public RecipeSummary updateMyRecipe(String recipeId) {
 		return recipeDAO.selectUpdateRecipe(recipeId);
 	}
+
+	@Override
+	public boolean myrecipeImageDelete(String image) {
+		return recipeDAO.myrecipeImageDelete(image);
+	}
+
+	@Override
+	public List<Ingredient> updateMyRecipeIngredient(String recipeId) {
+		return recipeDAO.updateMyRecipeIngredient(recipeId);
+	}
+
+	@Override
+	public List<RecipeInfo> updateMyRecipeInfo(String recipeId) {
+		return recipeDAO.updateMyRecipeInfo(recipeId);
+	}
+
+	@Override
+	public void updateMyRecipeSummary(RecipeSummary recipeSummary) {
+		recipeDAO.updateMyRecipeSummary(recipeSummary);
+		
+	}
+	
 	
 }

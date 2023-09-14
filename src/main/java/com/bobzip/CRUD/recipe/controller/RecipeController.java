@@ -193,15 +193,68 @@ public class RecipeController {
 		return mav;
 	}
 	
-	@RequestMapping("/updatemyRecipe")
+	@RequestMapping("/updatemyRecipeForm")
 	public ModelAndView updatemyRecipe(ModelAndView mav, 
 			@RequestParam("recipeId") String recipeId) {
 		RecipeSummary update = recipeService.updateMyRecipe(recipeId);
-		
+		List<Ingredient> ingredient = recipeService.updateMyRecipeIngredient(recipeId);
+		List<RecipeInfo> recipeInfo =  recipeService.updateMyRecipeInfo(recipeId);
+		System.out.println("마이레시피 업데이트" + update);
+		System.out.println("마이레시피 인그리언트" +ingredient);
+		System.out.println("마이레시피 인포" + recipeInfo);
 		mav.addObject("recipeSummary", update);
-		mav.setViewName("my"); 
+		mav.addObject("ingredient", ingredient);
+		mav.addObject("recipeInfo", recipeInfo);
+		mav.setViewName("myrecipe/myrecipeUpdate"); 
 		return mav;
 	}
 	
+	@RequestMapping(value = "/myrecipeImageDelete", method= RequestMethod.POST)
+	public ResponseEntity<String> myrecipeImageDelete(@RequestParam("image") String image) {
+		System.out.println("이미지 삭제 실행");
+		if (recipeService.myrecipeImageDelete(image)) {
+			System.out.println("이미지 삭제");
+			return ResponseEntity.ok("이미지가 삭제되었습니다");
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("이미지 삭제 실패");
+		}
+	}
 	
+	@RequestMapping("/myrecipeUpdate")
+	public ModelAndView myrecipeUpdate(ModelAndView mav,
+			@RequestParam("memberId") String memberId,
+			@RequestParam("recipeName") String recipeName,
+			@RequestParam("summary") String summary,
+			@RequestParam("typeName") String typeName,
+			@RequestParam("nationName") String nationName,
+			@RequestParam("levelName") String levelName,
+			@RequestParam("ingredientName") String ingredientName,
+			@RequestParam("cookingStep") String cookingStep,
+			@RequestParam("imageFile") MultipartFile imageFile,
+			@RequestParam("recipeId") String recipeId) throws Exception{
+		
+		//파일 업로드
+				String uploadFolder = "C:\\Users\\UserK\\BoB.zip\\src\\main\\webapp\\resources\\img\\recipe";
+				String imageName = imageFile.getOriginalFilename();
+				File saveFile = new File(uploadFolder, imageName);
+				try {
+					imageFile.transferTo(saveFile);
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+				
+				//데이터베이스에 데이터 넣기
+				String [] ingredientsName = ingredientName.split(",");
+				String [] cookingSteps = cookingStep.split(",");
+				
+				RecipeSummary recipeSummary = new RecipeSummary(Integer.parseInt(recipeId),recipeName,summary,nationName,levelName,typeName,memberId,imageName);
+				recipeService.updateMyRecipeSummary(recipeSummary);
+				
+				for (String name : ingredientsName) {
+					Ingredient ingredient_ = new Ingredient(name, Integer.parseInt(recipeId));
+					recipeService.insertIngredient(ingredient_);
+				}
+				
+		return mav;
+	}
 }
