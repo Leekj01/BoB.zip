@@ -8,72 +8,7 @@
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://kit.fontawesome.com/3e352a9905.js" crossorigin="anonymous"></script>
-<script type="text/javascript">
-function deleteComment(commentNo) {
-	  if (confirm("정말로 이 댓글을 삭제하시겠습니까?")) {
-	    $.ajax({
-	      type: "POST", 
-	      url: "${contextPath}/recipe/deleteComment", 
-	      data: {
-	        commentNo: commentNo 
-	      },
-	      success: function (response) {
-	        alert("댓글이 삭제되었습니다.");
-	        location.reload();
-	      },
-	      error: function (error) {
-	    	alert("댓글 삭제에 실패했습니다. 다시 시도해주세요.");
-	        console.error("댓글 삭제 실패: " + error);
-	        location.reload();
-	      }
-	    });
-	 }
-}
-//댓글 수정 폼 열기 함수
-function openEditCommentModal(commentNo, replyComments) {
-// 기존 댓글 데이터로 수정 폼 채우기
-const editCommentText = document.getElementById('editCommentText');
-const editCommentNo = document.getElementById('editCommentNo');
-editCommentText.value = replyComments;
-editCommentNo.value = commentNo;
-
-// 댓글 수정 폼 표시하기
-const editCommentForm = document.getElementById('editCommentForm_'+commentNo);
-editCommentForm.style.display = 'block';
-}
-
-// 댓글 수정 취소 함수
-function cancelEdit(commentNo) {
-// 댓글 수정 폼 감추기
-const editCommentForm = document.getElementById('editCommentForm_'+commentNo);
-editCommentForm.style.display = 'none';
-}
-
-// 수정된 댓글 제출 함수
-function editComment() {
-const editCommentText = document.getElementById('editCommentText').value;
-const editCommentNo = document.getElementById('editCommentNo').value;
-
-// 댓글 업데이트를 위한 AJAX 요청
-$.ajax({
-  type: "POST",
-  url: "${contextPath}/recipe/editComment",
-  data: {
-    commentNo: editCommentNo,
-    replyComment: editCommentText
-  },
-  success: function (response) {
-    alert("댓글이 수정되었습니다.");
-    location.reload();
-  },
-  error: function (error) {
-    alert("댓글 수정에 실패했습니다. 다시 시도해주세요.");
-    console.error("댓글 수정 실패: " + error);
-    location.reload();
-  }
-});
-}
-</script>
+<script type="text/javascript" src="${contextPath}/resources/js/recipeInfo.css"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -121,46 +56,50 @@ $.ajax({
  			</c:forEach>
 		</div>
 	
-  <!-- 댓글입력폼 -->
-	<c:choose>
-		<c:when test="${not empty memberLoggedIn}">
-			<div id="replysession">
-				<form action="${contextPath}/recipe/recipeInfoComments" method="post" >
-				<c:forEach items="${recipeInfo}" var="recipeInfo">
-				<input name="recipeId" value="${recipeInfo.recipeId}" type="hidden" />
-				</c:forEach>
-				<input name="memberId" value="${memberLoggedIn}" type="hidden" />
-                <input name="memberNick" value="${memberNick}" type="hidden" /><br>
-                <textarea name="replyComment" id="replyComment" rows="5" cols="50" placeholder="댓글을 입력해주세요"></textarea>
-
-                <input type="submit" value="댓글등록" />
-                <input type="reset" value="다시작성" />
-				</form>
+  		<!-- 댓글입력폼 -->
+		<c:choose>
+			<c:when test="${not empty memberLoggedIn}">
+				<div id="replysession">
+					<form action="${contextPath}/recipe/recipeInfoComments" method="post" >
+					<c:forEach items="${recipeInfo}" var="recipeInfo">
+					<input name="recipeId" value="${recipeInfo.recipeId}" type="hidden" />
+					</c:forEach>
+					<input name="memberId" value="${memberLoggedIn}" type="hidden" />
+	                <input name="memberNick" value="${memberNick}" type="hidden" /><br>
+	                <textarea name="replyComment" id="replyComment" rows="5" cols="50" placeholder="댓글을 입력해주세요"></textarea>
+	                <input type="submit" value="댓글등록" />
+	                <input type="reset" value="다시작성" />
+					</form>
+				</div>
+			</c:when>
+		</c:choose>
+		<div class="commentBox">
+			<div class="comment">
+				<h3>댓글</h3>
+				<ul>
+					<c:forEach items="${recipeComment}" var="comment">
+						<div class="commentContent">
+							<li>${comment.memberNick}<span>(${comment.memberId})</span></li>
+							<li>${comment.replyComment}</li>
+							<c:if test="${comment.memberId eq memberLoggedIn}">
+								<button onclick="openEditCommentModal('${comment.commentNo}', '${comment.replyComment}')">수정</button>
+								<button onclick="deleteComment('${comment.commentNo}')">삭제</button>
+							</c:if>
+						</div>
+						<div class="editForm">
+							<li id="editCommentForm_${comment.commentNo}" style="display: none;">
+			    				<form id="commentForm">
+			        				<input type="hidden" id="editCommentNo" name="commentNo" value="${comment.commentNo}" />
+			        				<textarea id="editCommentText" name="replyComment" rows="5" cols="50" placeholder="댓글을 수정해주세요"></textarea>
+			        				<input type="button" value="수정 완료" onclick="editComment()" />
+			        				<input type="button" value="취소" onclick="cancelEdit()" />
+			    				</form>
+							</li>
+						</div>
+					</c:forEach>
+				</ul>
 			</div>
-		</c:when>
-	</c:choose>
-	<h3>댓글</h3>
-		<ul>
-			<c:forEach items="${recipeComment}" var="comment">
-				<li>${comment.commentNo}</li>
-				<li>${comment.memberNick}</li>
-				<li>${comment.replyComment}</li>
-				<c:if test="${comment.memberId eq memberLoggedIn}">
-				<button onclick="openEditCommentModal('${comment.commentNo}', '${comment.replyComment}')">수정</button>
-				<button onclick="deleteComment('${comment.commentNo}')">삭제</button>
-				</c:if>
-				
-				<li id="editCommentForm_${comment.commentNo}" style="display: none;">
-    				<form id="commentForm">
-        				<input type="hidden" id="editCommentNo" name="commentNo" value="${comment.commentNo}" />
-        				<textarea id="editCommentText" name="replyComment" rows="5" cols="50" placeholder="댓글을 수정해주세요"></textarea>
-        				<input type="button" value="수정 완료" onclick="editComment()" />
-        				<input type="button" value="취소" onclick="cancelEdit()" />
-    				</form>
-				</li>
-
-			</c:forEach>
-		</ul>
+		</div>
 	</div>
 </body>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
