@@ -51,5 +51,7 @@ public interface RecipeDAO {
 
 	void updateMyRecipeSummary(RecipeSummary recipeSummary);
 
+	boolean deleteMyRecipe(String recipeId);
+
 	
 }

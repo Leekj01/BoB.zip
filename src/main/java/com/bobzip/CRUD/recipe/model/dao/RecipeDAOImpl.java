@@ -124,6 +124,12 @@ public class RecipeDAOImpl implements RecipeDAO{
 	public void updateMyRecipeSummary(RecipeSummary recipeSummary) {
 		sqlSession.update("mapper.recipe.updateMyRecipeSummary", recipeSummary);
 	}
+
+	@Override
+	public boolean deleteMyRecipe(String recipeId) {
+		sqlSession.delete("mapper.recipe.deleteMyRecipe", recipeId);
+		return false;
+	}
 	
 	
 }

@@ -119,6 +119,12 @@ public class RecipeServiceImpl implements RecipeService{
 		recipeDAO.updateMyRecipeSummary(recipeSummary);
 		
 	}
+
+	@Override
+	public boolean deleteMyRecipe(String recipeId) {
+		 boolean delteMyRecipe = recipeDAO.deleteMyRecipe(recipeId);
+		 return delteMyRecipe;
+	}
 	
 	
 }

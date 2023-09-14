@@ -257,4 +257,15 @@ public class RecipeController {
 				
 		return mav;
 	}
+	
+	@RequestMapping(value = "/deletemyRecipe", method= RequestMethod.POST)
+	public ResponseEntity<String> deleteMyRecipe(@RequestParam("recipeId") String recipeId) {
+		System.out.println("내 레시피 삭제");
+		if (recipeService.deleteMyRecipe(recipeId)) {
+			System.out.println("댓글삭제");
+			return ResponseEntity.ok("나의레시피가 삭제되었습니다");
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("나의레시피삭제 실패");
+		}
+	}
 }

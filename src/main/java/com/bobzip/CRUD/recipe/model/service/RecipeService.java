@@ -51,6 +51,8 @@ public interface RecipeService {
 
 	void updateMyRecipeSummary(RecipeSummary recipeSummary);
 
+	boolean deleteMyRecipe(String recipeId);
+
 	
 
 }

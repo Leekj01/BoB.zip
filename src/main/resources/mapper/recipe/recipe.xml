@@ -159,4 +159,10 @@
 			WHERE recipeId = #{recipeId}
 		]]>
 	</update>
+	
+	<delete id="deleteMyRecipe" parameterType="String">
+		<![CDATA[
+			DELETE FROM recipesummary WHERE recipeId = #{recipeId}
+		]]>
+	</delete>
 </mapper>

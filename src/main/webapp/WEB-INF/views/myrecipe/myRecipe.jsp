@@ -6,8 +6,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://kit.fontawesome.com/3e352a9905.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/myRecipe.css">
+	<script>
+function deleteRecipe(recipeId) {
+    // 삭제 요청을 보냅니다.
+    $.ajax({
+        type: "POST",
+        url: "${contextPath}/recipe/deletemyRecipe",
+        data: { recipeId: recipeId },
+        success: function(response) {
+            if (response.success) {
+                alert("레시피가 성공적으로 삭제되었습니다.");
+            } else {
+                alert("레시피 삭제 중 오류가 발생했습니다.");
+            }
+        },
+        error: function() {
+            alert("요청 처리 중 오류가 발생했습니다.");
+        }
+    });
+}
+</script>
+	
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 </head>
@@ -27,7 +49,7 @@
 						<p>${recipeSummary.nationName},${recipeSummary.levelName},${recipeSummary.typeName}</p>
 					
 					<a href="${contextPath}/recipe/updatemyRecipeForm?recipeId=${recipeSummary.recipeId}" class="edit-button">수정</a>
-    				<a href="${contextPath}/recipe/deletemyRecipe?recipeId=${recipeSummary.recipeId}" class="delete-button">삭제</a>
+    				<a href="javascript:void(0);" onclick="deleteRecipe(${recipeSummary.recipeId});" class="delete-button">삭제</a>
 					
 				</div>
 			</c:forEach>
