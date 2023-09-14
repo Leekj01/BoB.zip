@@ -137,7 +137,7 @@
 	<select id="selectSearchResult" parameterType="java.util.Map" resultType="recipeSummary">
 		<![CDATA[
 			SELECT * FROM recipesummary WHERE recipeName LIKE CONCAT('%',#{inputedRecipeName},'%')
-			AND recipeId >= #{paging.start} AND recipeId <= #{paging.end}
+			LIMIT #{paging.start},#{paging.end}
 		]]>
 	</select>
 	
