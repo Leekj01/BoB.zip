@@ -45,7 +45,7 @@ function fn_overlapped(){
 <body>
 	<div class="containner">
 		<div class="signinImage">
-			<img src="${contextPath}/resources/img/loginImage.jpg">
+			<img src="${contextPath}/resources/img/signInForm.jpg">
 		</div>
 		<div class="signinForm">
 		<a href="${contextPath}/"><img src="${contextPath}/resources/img/reallogo.png"></a>
