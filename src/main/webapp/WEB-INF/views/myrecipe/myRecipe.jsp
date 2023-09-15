@@ -48,7 +48,7 @@ function deleteRecipe(recipeId) {
 						<p>${recipeSummary.summary}</p>
 						<p>${recipeSummary.nationName},${recipeSummary.levelName},${recipeSummary.typeName}</p>
 					
-					<a href="${contextPath}/recipe/updatemyRecipeForm?recipeId=${recipeSummary.recipeId}" class="edit-button">수정</a>
+					<!--  <a href="${contextPath}/recipe/updatemyRecipeForm?recipeId=${recipeSummary.recipeId}" class="edit-button">수정</a>-->
     				<a href="javascript:void(0);" onclick="deleteRecipe(${recipeSummary.recipeId});" class="delete-button">삭제</a>
 					
 				</div>

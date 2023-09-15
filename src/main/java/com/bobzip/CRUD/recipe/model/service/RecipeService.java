@@ -43,7 +43,7 @@ public interface RecipeService {
 
 	RecipeSummary updateMyRecipe(String recipeId);
 
-	boolean myrecipeImageDelete(String image);
+	boolean myrecipeImageDelete(RecipeSummary recipeSummary);
 
 	List<Ingredient> updateMyRecipeIngredient(String recipeId);
 
@@ -51,7 +51,13 @@ public interface RecipeService {
 
 	void updateMyRecipeSummary(RecipeSummary recipeSummary);
 
-	boolean deleteMyRecipe(String recipeId);
+	boolean deleteMyRecipeSummary(String recipeId);
+
+	void updateMyRecipeIngredients(Ingredient ingredient_);
+
+	void deleteMyRecipeInfo(String recipeId);
+
+	void deleteMyRecipeIngredient(String recipeId);
 
 	
 

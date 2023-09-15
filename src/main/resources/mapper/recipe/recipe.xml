@@ -24,7 +24,7 @@
       <result column="image" property="image"/>
     </resultMap> 
     
-    <resultMap type="Ingredient" id="ingredeint">
+    <resultMap type="Ingredient" id="ingredient">
     	<result column="rowNumber" property="rowNumber"/>
     	<result column="ingredientName" property="ingredientName"/>
     	<result column="recipeId" property="recipeId"/>
@@ -146,9 +146,9 @@
 		]]>		
 	</select>
 	
-	<delete id="myrecipeImageDelete" parameterType="String" >
+	<delete id="myrecipeImageDelete" parameterType="recipeSummary" >
 		<![CDATA[
-			UPDATE recipesummary SET image="" WHERE image=#{image}
+			UPDATE recipesummary SET image= NULL WHERE recipeId=#{recipeId}
 		]]>
 	</delete>
 	
@@ -160,9 +160,28 @@
 		]]>
 	</update>
 	
-	<delete id="deleteMyRecipe" parameterType="String">
+	<delete id="deleteMyRecipeInfo" parameterType="String">
+		<![CDATA[
+			DELETE FROM recipeinfo WHERE recipeId = #{recipeId}
+		]]>
+	</delete>
+	
+	<delete id="deleteMyRecipeIngredient" parameterType="String">
+		<![CDATA[
+			DELETE FROM ingredient WHERE recipeId = #{recipeId}
+		]]>
+	</delete>
+	
+	<delete id="deleteMyRecipeSummary" parameterType="String">
 		<![CDATA[
 			DELETE FROM recipesummary WHERE recipeId = #{recipeId}
 		]]>
 	</delete>
+	
+	<update id="updateMyRecipeIngredients" parameterType="ingredient">
+		<![CDATA[
+			UPDATE ingredient SET  ingredientName = #{ingredientName}
+			WHERE rowNumber = #{rowNumber}
+		]]>
+	</update>
 </mapper>

@@ -210,16 +210,17 @@ public class RecipeController {
 	}
 	
 	@RequestMapping(value = "/myrecipeImageDelete", method= RequestMethod.POST)
-	public ResponseEntity<String> myrecipeImageDelete(@RequestParam("image") String image) {
+	public ResponseEntity<String> myrecipeImageDelete(@RequestParam("image") String image,@RequestParam("recipeId") String recipeId) {
 		System.out.println("이미지 삭제 실행");
-		if (recipeService.myrecipeImageDelete(image)) {
+		RecipeSummary summary = new RecipeSummary(recipeId,image);
+		if (recipeService.myrecipeImageDelete(summary)) {
 			System.out.println("이미지 삭제");
 			return ResponseEntity.ok("이미지가 삭제되었습니다");
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("이미지 삭제 실패");
 		}
 	}
-	
+	/*
 	@RequestMapping("/myrecipeUpdate")
 	public ModelAndView myrecipeUpdate(ModelAndView mav,
 			@RequestParam("memberId") String memberId,
@@ -231,7 +232,8 @@ public class RecipeController {
 			@RequestParam("ingredientName") String ingredientName,
 			@RequestParam("cookingStep") String cookingStep,
 			@RequestParam("imageFile") MultipartFile imageFile,
-			@RequestParam("recipeId") String recipeId) throws Exception{
+			@RequestParam("recipeId") String recipeId,
+			@RequestParam("rowNumber") int rowNumber) throws Exception{
 		
 		//파일 업로드
 				String uploadFolder = "C:\\Users\\UserK\\BoB.zip\\src\\main\\webapp\\resources\\img\\recipe";
@@ -251,18 +253,20 @@ public class RecipeController {
 				recipeService.updateMyRecipeSummary(recipeSummary);
 				
 				for (String name : ingredientsName) {
-					Ingredient ingredient_ = new Ingredient(name, Integer.parseInt(recipeId));
-					recipeService.insertIngredient(ingredient_);
+					Ingredient ingredient_ = new Ingredient(rowNumber,name, Integer.parseInt(recipeId));
+					recipeService.updateMyRecipeIngredients(ingredient_);
 				}
 				
-		return mav;
+		return null;
 	}
-	
+	*/
 	@RequestMapping(value = "/deletemyRecipe", method= RequestMethod.POST)
 	public ResponseEntity<String> deleteMyRecipe(@RequestParam("recipeId") String recipeId) {
 		System.out.println("내 레시피 삭제");
-		if (recipeService.deleteMyRecipe(recipeId)) {
-			System.out.println("댓글삭제");
+		recipeService.deleteMyRecipeInfo(recipeId);
+		recipeService.deleteMyRecipeIngredient(recipeId);
+		boolean success = recipeService.deleteMyRecipeSummary(recipeId);
+		if (success) {
 			return ResponseEntity.ok("나의레시피가 삭제되었습니다");
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("나의레시피삭제 실패");

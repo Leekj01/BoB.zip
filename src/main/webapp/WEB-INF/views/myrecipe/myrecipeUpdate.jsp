@@ -13,13 +13,14 @@
 }
 </style>
 <script>
-function deleteComment(image) {
+function deleteComment(image,recipeId) {
 	  if (confirm("이미지를 삭제하시겠습니까?")) {
 	    $.ajax({
 	      type: "POST", 
 	      url: "${contextPath}/recipe/myrecipeImageDelete", 
 	      data: {
-	    	  image: image 
+	    	  image: image
+	    	  recipeId: recipeId
 	      },
 	      success: function (response) {
 	        alert("이미지가 삭제되었습니다. 새로운 이미지를 입력해주세요.");
@@ -122,7 +123,7 @@ function addInputButtonClicked(type) {
 					<option value="고급">고급</option>
 				  </select><br>
 			
-			현재 요리사진: ${recipeSummary.image}  <button onclick="deleteComment('${recipeSummary.image}')">삭제</button><br>
+			현재 요리사진: ${recipeSummary.image}  <button onclick="deleteComment('${recipeSummary.image}','${recipeSummary.recipeId }')">삭제</button><br>
 			요리사진: <input type="file" name="imageFile">
 
         </div>
@@ -132,6 +133,7 @@ function addInputButtonClicked(type) {
         <div class="ingredient-group">
         <c:forEach items="${ingredient}" var="ingredient">
        	<input name="ingredientName" type="text" class="form-control input-field" value="${ingredient.ingredientName}" required><br>
+       	<input name="rowNumber" type="hidden" value="${ingredient.rowNumber}">
         </c:forEach><br>
         
         

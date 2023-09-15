@@ -105,8 +105,8 @@ public class RecipeDAOImpl implements RecipeDAO{
 	}
 
 	@Override
-	public boolean myrecipeImageDelete(String image) {
-		int imageaffected = sqlSession.update("mapper.recipe.myrecipeImageDelete", image);
+	public boolean myrecipeImageDelete(RecipeSummary recipeSummary) {
+		int imageaffected = sqlSession.update("mapper.recipe.myrecipeImageDelete", recipeSummary);
 		return imageaffected > 0;
 	}
 
@@ -126,9 +126,30 @@ public class RecipeDAOImpl implements RecipeDAO{
 	}
 
 	@Override
-	public boolean deleteMyRecipe(String recipeId) {
-		sqlSession.delete("mapper.recipe.deleteMyRecipe", recipeId);
+	public boolean deleteMyRecipeSummary(String recipeId) {
+		int num = sqlSession.delete("mapper.recipe.deleteMyRecipeSummary", recipeId);
+		if (num > 0) {
+			return true;
+		}
 		return false;
+	}
+
+	@Override
+	public void updateMyRecipeIngredients(Ingredient ingredient_) {
+		sqlSession.update("mapper.recipe.updateMyRecipeIngredients", ingredient_);
+		
+	}
+
+	@Override
+	public void deleteMyRecipeInfo(String recipeId) {
+		sqlSession.delete("mapper.recipe.deleteMyRecipeInfo", recipeId);
+		
+	}
+
+	@Override
+	public void deleteMyRecipeIngredient(String recipeId) {
+		sqlSession.delete("mapper.recipe.deleteMyRecipeIngredient", recipeId);
+		
 	}
 	
 	

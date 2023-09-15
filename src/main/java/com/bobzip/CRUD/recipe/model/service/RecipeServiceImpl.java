@@ -100,8 +100,8 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public boolean myrecipeImageDelete(String image) {
-		return recipeDAO.myrecipeImageDelete(image);
+	public boolean myrecipeImageDelete(RecipeSummary recipeSummary) {
+		return recipeDAO.myrecipeImageDelete(recipeSummary);
 	}
 
 	@Override
@@ -121,9 +121,26 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public boolean deleteMyRecipe(String recipeId) {
-		 boolean delteMyRecipe = recipeDAO.deleteMyRecipe(recipeId);
+	public boolean deleteMyRecipeSummary(String recipeId) {
+		 boolean delteMyRecipe = recipeDAO.deleteMyRecipeSummary(recipeId);
 		 return delteMyRecipe;
+	}
+
+	@Override
+	public void updateMyRecipeIngredients(Ingredient ingredient_) {
+		recipeDAO.updateMyRecipeIngredients(ingredient_);
+	}
+
+	@Override
+	public void deleteMyRecipeInfo(String recipeId) {
+		recipeDAO.deleteMyRecipeInfo(recipeId);
+		
+	}
+
+	@Override
+	public void deleteMyRecipeIngredient(String recipeId) {
+		recipeDAO.deleteMyRecipeIngredient(recipeId);
+		
 	}
 	
 	

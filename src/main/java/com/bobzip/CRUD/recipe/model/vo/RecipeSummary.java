@@ -29,4 +29,9 @@ public class RecipeSummary {
 		this.memberId = memberId;
 		this.image = image;
 	}
+	
+	public RecipeSummary(String recipeId, String image) {
+		this.recipeId = Integer.parseInt(recipeId);
+		this.image = image;
+	}
 }
