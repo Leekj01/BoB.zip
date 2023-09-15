@@ -47,7 +47,8 @@ function fn_overlapped(){
 		<div class="signinImage">
 			<img src="${contextPath}/resources/img/loginImage.jpg">
 		</div>
-		<div class="SigninForm">
+		<div class="signinForm">
+		<a href="${contextPath}/"><img src="${contextPath}/resources/img/reallogo.png"></a>
 		<h3>Sign in</h3>
 			<form action="${contextPath}/member/addMember.do" method="post">
 				<div id="detail_table">
@@ -84,8 +85,9 @@ function fn_overlapped(){
 					<br>
 					<table align=center>
 						<tr>
-							<td><input type="submit" value="회원 가입"> <input
-								type="reset" value="다시입력"></td>
+							<td>
+								<input type="submit" value="회원 가입"> 
+							</td>
 						</tr>
 					</table>
 				</div>
