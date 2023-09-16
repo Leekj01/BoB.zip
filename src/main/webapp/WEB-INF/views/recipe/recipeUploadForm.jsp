@@ -67,7 +67,7 @@ function addInputButtonClicked(type) {
 		</div>
 		<div id="loginForm" >
 			<a href="${contextPath}/"><img src="${contextPath}/resources/img/reallogo.png"></a>
-			<h3>Recipe Input</h3>
+			<h3>Recipe Upload</h3>
 			<div class="recipeForm">
 				<form action="${contextPath}/recipe/recipeUpload" method="post" enctype="multipart/form-data">
 					<div id="recipeHeader">
