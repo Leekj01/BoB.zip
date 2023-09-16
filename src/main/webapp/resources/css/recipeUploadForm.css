@@ -1,1 +1,167 @@
 @charset "UTF-8";
+@charset "UTF-8";
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: white;
+	margin:0;
+	padding:0;
+	min-height:100vh;
+}
+
+.containner {
+	width:100%;
+	height:100%;
+	margin: 0px auto;
+	display:flex;
+	
+}
+
+.loginImage {
+	width:50%;
+	height:100%;
+}
+
+.loginImage img {
+	width:100%;
+	height:100%;
+	object-fit: cover;
+}
+
+.loginForm {
+	padding: 20px;
+	width: 250px;
+	margin: 0 100px auto 100px;
+}
+
+.loginForm h3 {
+	margin-bottom: 20px;
+	color: black;
+	font-size: 1.8rem;
+	font-weight: bold;
+}
+
+.loginForm form {
+	text-align: center;
+}
+
+.loginForm table {
+	margin: 0 auto;
+}
+
+.loginForm input[type="text"] {
+	width: 250px;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid black;
+}
+
+.loginForm select {
+	width: 250px;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid black;
+}
+
+.loginForm input[type="submit"],
+.loginForm input[type="button"] {
+	width: 250px;
+	padding: 10px;
+	background-color: #36B3a8;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.loginForm input[type="submit"]:hover,
+.loginForm input[type="button"]:hover {
+	background-color: #088395;
+}
+
+.loginForm span {
+	font-size: 0.9rem;
+}
+
+.loginForm a {
+	text-decoration: none;
+	color: #36B3a8;
+}
+
+.loginForm a:hover {
+	text-decoration: underline;
+	color:  #088395;
+}
+
+.imageTab {
+	width: 250px;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid black;
+}
+
+.cooking-step textarea {
+	width: 250px;
+	padding: 10px;
+	margin-bottom: 10px auto;
+	border: 1px solid black;
+}
+
+.recipeForm button {
+    width: 100px; 
+    padding: 10px;
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 10px; 
+}
+
+.recipeForm button:hover {
+    background-color: #088395;
+}
+
+.ingredient-group input {
+    width: 250px;
+    padding: 10px;
+    margin-bottom: 10px auto;
+    border: 1px solid black;
+    display: inline-block; 
+}
+
+
+.ingredient-group .delete-button {
+    width: auto; 
+    padding: 10px;
+    background-color: #ff6b6b; 
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 10px; 
+}
+
+.ingredient-group input,
+.cooking-step textarea {
+    width: 250px;
+    padding: 10px;
+    margin-bottom: 10px auto;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+
+.delete-button {
+    width: auto;
+    padding: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 10px;
+}

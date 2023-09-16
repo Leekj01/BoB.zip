@@ -39,7 +39,7 @@ function addInputButtonClicked(type) {
         textareaElement.setAttribute("name", "cookingStep");
         textareaElement.setAttribute("class", "form-control input-field");
         textareaElement.setAttribute("rows", "3");
-        textareaElement.setAttribute("placeholder", "요리순서를 입력해주세요");
+        textareaElement.setAttribute("placeholder", "요리과정을 입력해주세요");
         textareaElement.setAttribute("required", true);
         
         var deleteButton = document.createElement("button");
@@ -56,25 +56,26 @@ function addInputButtonClicked(type) {
     containerDiv.appendChild(newInputGroup);
 }
 </script>
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/recipeUploadForm.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-
 <body>
 	<div class="containner">
 		<div class="loginImage">
 			<img src="${contextPath}/resources/img/loginImage.jpg">
 		</div>
-		<div id="loginForm" >
+		<div class="loginForm" >
 			<a href="${contextPath}/"><img src="${contextPath}/resources/img/reallogo.png"></a>
 			<h3>Recipe Upload</h3>
 			<div class="recipeForm">
 				<form action="${contextPath}/recipe/recipeUpload" method="post" enctype="multipart/form-data">
 					<div id="recipeHeader">
-			        	작성자: <input name="memberId" value="${memberLoggedIn}" readonly/> <br>
-						요리명: <input name="recipeName" type="text" class="form-control" placeholder="레시피제목을 입력하세요." aria-label="Username" aria-describedby="basic-addon1" required><br>
-						요리소개: <input name="summary" type="text" placeholder="음식에대한 짧은 소개" required><br>
-						카테고리: <select name="typeName" required>
+			        	<input name="memberId" type="text" value="${memberLoggedIn}" placeholder="작성자" readonly/> <br>
+						<input name="recipeName" type="text" class="form-control" placeholder="요리명" aria-label="Username" aria-describedby="basic-addon1" required><br>
+						<input name="summary" type="text" placeholder="요리에 대한 짧은 설명" required><br>
+						<select name="typeName" placeholder="요리 캍" required>
+									<option value="">카테고리</option>
 									<option value="구이">구이</option>
 									<option value="국">국</option>
 									<option value="떡/한과">떡/한과</option>
@@ -85,8 +86,8 @@ function addInputButtonClicked(type) {
 									<option value="조림">조림</option>
 									<option value="튀김/커틀릿">튀김/커틀릿</option>
 								</select><br>
-						나라 : <select name="nationName" required>
-			  					<option value="">선택하세요</option> 
+						<select name="nationName" required>
+			  					<option value="">나라</option> 
 			  					<option value="한식">한식</option> 
 			  					<option value="중국">중국</option>
 			  					<option value="일본">일본</option>
@@ -94,34 +95,31 @@ function addInputButtonClicked(type) {
 			  					<option value="서양">서양</option>
 			  					<option value="이탈리아">이탈리아</option>
 							  </select><br>     
-			            난이도: <select name="levelName" required>
+			            <select name="levelName" required>
 								<option value="">난이도</option> 
 								<option value="초보환영">초보환영</option>
 								<option value="보통">보통</option>
 								<option value="중급">중급</option>
 								<option value="고급">고급</option>
 							  </select><br>
-						요리사진: <input type="file" name="imageFile">
+						<div class="imageTab">
+							<label for="imageFile">요리사진:</label>
+							<input type="file" name="imageFile">
+						</div>
 			        </div>
 			        <div id="ingredient">
-			        재료
 			        <div class="ingredient-group">
 			            <input name="ingredientName" type="text" class="form-control input-field" placeholder="재료를 입력해주세요" required>
-			            <button type="button" class="delete-button" disabled>삭제</button>
 			        </div>
 			    </div>
 			    <button type="button" onclick="addInputButtonClicked('ingredient')">재료추가</button><br><br>
-			
 			    <div id="cookingorder">
-			    요리순서
 			        <div class="cooking-step">
 			            <textarea name="cookingStep" class="form-control input-field" rows="3" placeholder="요리순서를 입력해주세요" required></textarea>     
-			            <button type="button" class="delete-button" disabled>삭제</button>
 			        </div>
 			    </div>
 			    <button type="button" onclick="addInputButtonClicked('cookingorder')">요리순서추가</button><br>
 				<input type="submit" value="레시피 등록">
-			    <input type="reset" value="다시 작성">
 			    <input type="reset" value="취소">
 				</form>
 			</div>
