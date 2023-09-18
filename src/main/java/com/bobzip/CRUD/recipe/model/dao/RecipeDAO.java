@@ -59,5 +59,10 @@ public interface RecipeDAO {
 
 	void deleteMyRecipeIngredient(String recipeId);
 
-	
+	List<RecipeSummary> selectSearchResult(Map parameter);
+
+	int countSearchResult(String inputedRecipeName);
+
+	boolean editComment(RecipeComment recipeComment);
+
 }

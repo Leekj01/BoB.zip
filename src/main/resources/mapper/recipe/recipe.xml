@@ -49,7 +49,7 @@
 		<![CDATA[
 			SELECT * 
 			FROM recipesummary
-			WHERE recipeId >= #{start} AND recipeId <= #{end}
+			LIMIT #{start},#{end}
 		]]>
 	</select>
 	
@@ -182,6 +182,25 @@
 		<![CDATA[
 			UPDATE ingredient SET  ingredientName = #{ingredientName}
 			WHERE rowNumber = #{rowNumber}
+
+	<select id="selectSearchResult" parameterType="java.util.Map" resultType="recipeSummary">
+		<![CDATA[
+			SELECT * FROM recipesummary WHERE recipeName LIKE CONCAT('%',#{inputedRecipeName},'%')
+			LIMIT #{paging.start},#{paging.end}
+		]]>
+	</select>
+	
+	<select id="countSearchResult" parameterType="String"  resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM recipesummary WHERE recipeName LIKE CONCAT('%',#{inputedRecipeName},'%')
+		]]>
+	</select>
+	
+	<update id="updateComment" parameterType="recipeComment">
+		<![CDATA[
+			UPDATE recipecomment 
+			SET replyComment=#{replyComment}
+			WHERE commentNo=#{commentNo} 
 		]]>
 	</update>
 </mapper>

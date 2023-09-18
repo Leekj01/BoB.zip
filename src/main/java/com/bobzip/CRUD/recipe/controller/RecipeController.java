@@ -32,6 +32,8 @@ import com.bobzip.CRUD.recipe.model.vo.RecipeSummary;
 @RequestMapping("/recipe")
 public class RecipeController {
 	
+	String search;
+	
 	@Autowired
 	private RecipeService recipeService;
 	
@@ -103,17 +105,6 @@ public class RecipeController {
 		}
 	}
 	
-	@RequestMapping(value = "/editComment", method= RequestMethod.POST)
-    public ResponseEntity<String> editComment(@RequestParam("commentNo") int commentNo,
-                                             @RequestParam("replyComment") String replyComment) {
-		System.out.println("댓글 수정");
-        if (recipeService.editComment(commentNo, replyComment)) {
-            return ResponseEntity.ok("댓글이 수정되었습니다.");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 수정 실패");
-        }
-    }
-	
 	@RequestMapping("/recipeUploadForm")
 	public ModelAndView recipeUploadForm(HttpSession session, ModelAndView mav) {
 		String memberId = (String)session.getAttribute("memberLoggedIn");
@@ -173,16 +164,7 @@ public class RecipeController {
 		String memberId = (String)session.getAttribute("memberLoggedIn");
 		int total = recipeService.myrecipecountBoard(memberId);
 		System.out.println(total);
-		if (nowPage == null && cntPerPage == null) {
-			nowPage = "1";
-			cntPerPage = "16";
-		} else if (nowPage == null) {
-			nowPage = "1";
-		} else if (cntPerPage == null) {
-			cntPerPage = "16";
-		}
-		paging = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		Map<String, Object> parameter = new HashMap();
+    Map<String, Object> parameter = new HashMap();
 		parameter.put("memberId", memberId);
 		parameter.put("paging", paging);
 		List<RecipeSummary> myrecipeResult = recipeService.myrecipeResult(parameter);
@@ -192,7 +174,36 @@ public class RecipeController {
 		mav.setViewName("myrecipe/myRecipe");
 		return mav;
 	}
-	
+
+	@RequestMapping("/searchRecipe.do")
+	public ModelAndView searchRecipe (ModelAndView mav,Paging paging,
+			@RequestParam(value="inputedRecipeName", required=false) String inputedRecipeName,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+		if (inputedRecipeName != null) {
+			inputedRecipeName = inputedRecipeName.trim();
+			search = inputedRecipeName;
+		}
+		int total = recipeService.countSearchResult(search);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "16";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "16";
+		}
+		paging = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+    Map parameter = new HashMap();
+		parameter.put("paging",paging);
+		parameter.put("inputedRecipeName",search);
+		List<RecipeSummary> searchResult = recipeService.selectSearchResult(parameter);
+		mav.addObject("recipeSummary",searchResult);
+		mav.addObject("paging",paging);
+		mav.setViewName("recipe/recipeSearch");
+		return mav;
+	}
+		
 	@RequestMapping("/updatemyRecipeForm")
 	public ModelAndView updatemyRecipe(ModelAndView mav, 
 			@RequestParam("recipeId") String recipeId) {
@@ -270,6 +281,15 @@ public class RecipeController {
 			return ResponseEntity.ok("나의레시피가 삭제되었습니다");
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("나의레시피삭제 실패");
+	
+	@RequestMapping(value="/editComment", method=RequestMethod.POST)
+	public ResponseEntity<String> editComment(@ModelAttribute RecipeComment recipeComment){
+		boolean success = recipeService.editComment(recipeComment);
+		System.out.println(success);
+		if (success) {
+			return ResponseEntity.ok("댓글이 수정되었습니다.");
+		} else {
+			return ResponseEntity.badRequest().body("댓글 수정에 실패했습니다.");
 		}
 	}
 }

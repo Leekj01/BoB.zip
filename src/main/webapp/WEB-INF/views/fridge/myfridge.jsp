@@ -1,25 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  isELIgnored="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<%@ page session="true" %>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-	span:hover {
-		cursor:pointer;
-	}
-	.listbox {
-    display: flex;
-    flex-wrap: wrap;
-	}
-
-	.listInner {
-    width: 20%; 
-    box-sizing: border-box;  
-	}
-</style>
+<script src="https://kit.fontawesome.com/3e352a9905.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	//선택재료 담을 배열
@@ -114,50 +101,59 @@
         }
     }
 </script>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/myfridge.css">
 </head>
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/CommonHeader.jsp"%>
 <body>
-	<h1>나의 냉장고</h1>
-		<table border="1">
-        <tr>
-            <th>품목</th>
-            <th>삭제</th>
-        </tr>
-        <c:forEach var="myFridge" items="${myFridge}">
-            <tr>
-                <td>${myFridge.ingredientName}</td>
-                <td><a href="${contextPath}/fridge/deleteFridge.do?rowNumber=${myFridge.rowNumber}">X</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-    <a href="${contextPath}/fridge/searchRecipe.do">냉장고 재료로 뭘 만들지?</a>
-    <div class="selectArea" style="border: 1px solid black;">
-		<div class="searchbox">
-	        <label>재료: <input type="text" id="search" onkeyup="filter()" placeholder="재료를 입력하세요"></label>
-	    </div>
-	    <div class="selectedbox">
-		    <!-- 선택한 재료들을 화면 상단에 표시 -->
-		    <div>
-		        선택한 재료:
-		        <table id="selectedIngredientsTable" border="0"></table>
-		    </div>
-		    <!-- 폼 태그로 감싸기 -->
-		    <form id="form" action="${contextPath}/fridge/addFridge.do" method="post">
-		        <!-- span 클릭 시 input hidden 태그 추가, X 클릭시 삭제 -->
-		        <input type="submit" value="냉장고에 넣기">
-		    </form>
+	<h2>나의 냉장고</h2>
+	<div class="containner">
+		<div class="refridge">
+			<table border="1">
+				<tr>
+					<th>품목</th>
+					<th>삭제</th>
+				</tr>
+				<c:forEach var="myFridge" items="${myFridge}">
+					<tr>
+						<td>${myFridge.ingredientName}</td>
+						<td><a href="${contextPath}/fridge/deleteFridge.do?rowNumber=${myFridge.rowNumber}">X</a></td>
+					</tr>
+				</c:forEach>
+			</table>
+			<a href="${contextPath}/fridge/searchRecipe.do">냉장고 재료로 뭘 만들지?</a>
 		</div>
-		<div class="listbox">
-		    <c:forEach var="ingredient" items="${allIngredients}">
-		        <div class="listInner">
-		            <!-- span 클릭 시 toggleSelectedBox 함수 호출 -->
-		            <span class="ingredient" onclick="toggleSelectedBox(event)">${ingredient}</span>
-		        </div>
-		    </c:forEach>
+		<div class="selectedbox">
+			<!-- 선택한 재료들을 화면 상단에 표시 -->
+			<div>
+				선택한 재료:
+				<table id="selectedIngredientsTable" border="0"></table>
+			</div>
+			<!-- 폼 태그로 감싸기 -->
+			<form id="form" action="${contextPath}/fridge/addFridge.do"
+				method="post">
+				<!-- span 클릭 시 input hidden 태그 추가, X 클릭시 삭제 -->
+				<input type="submit" value="냉장고에 넣기">
+			</form>
+		</div>
+		<div class="selectArea">
+			<div class="searchbox">
+				<label>재료: <input type="text" id="search" onkeyup="filter()"
+					placeholder="재료를 입력하세요"></label>
+			</div>
+
+			<div class="listbox">
+				<c:forEach var="ingredient" items="${allIngredients}">
+					<div class="listInner">
+						<!-- span 클릭 시 toggleSelectedBox 함수 호출 -->
+						<span class="ingredient" onclick="toggleSelectedBox(event)">${ingredient}</span>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 </body>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </html>

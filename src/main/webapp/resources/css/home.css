@@ -39,12 +39,8 @@ main
     color: white;
 }
 .main .container button {
-    padding: 14.4px 45px;
-    width: 200px;
     height: 50px;
-    background-color: #36B3a8;;
-    border-radius: 30px;
-    border: none;
+    border-radius: 20px;
     color: white;
 }
 /* 
@@ -100,4 +96,37 @@ introduce
     color: #36B3a8;
     font-weight: bold;
     font-size: 1rem;
+}
+
+.search-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#foodSearch {
+    width: 70%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    font-size: 1rem;
+}
+
+#searchButton {
+    background-color: #36B3a8;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+#searchButton:hover {
+    background-color: #268b7e;
+    cursor:pointer;
+}
+
+#searchButton i {
+    color: white;
+    font-size: 1.2rem;
 }

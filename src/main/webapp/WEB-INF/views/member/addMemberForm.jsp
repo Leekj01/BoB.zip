@@ -9,7 +9,6 @@
 <script src="https://kit.fontawesome.com/3e352a9905.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
 function fn_overlapped(){
     var _id=$("#_member_id").val();
     if(_id==''){
@@ -39,58 +38,61 @@ function fn_overlapped(){
     });  //end ajax	 
  }	
 </script>
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/addMemberForm.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <body>
-<h3>필수입력사항</h3>
-	<form action="${contextPath}/member/addMember.do" method="post">	
-	<div id="detail_table">
-		<table>
-			<tbody>
-				<tr class="dot_line">
-					<td class="fixed_join">아이디</td>
-					<td>
-					  <input type="text" name="memberId"  id="_member_id"  size="20" maxlength=30/>
-					  <input type="hidden" name="member_id"  id="member_id" />
-					  
-					  <input type="button"  id="btnOverlapped" value="중복체크" onClick="fn_overlapped()" />
-					</td>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed_join">비밀번호</td>
-					<td><input name="memberPwd" type="password" size="20" maxlength=30/></td>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed_join">별명</td>
-					<td><input name="memberNick" type="text" size="20" maxlength=20/></td>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed_join">휴대폰번호</td>
-					<td><input size="5px" type="text" name="phone1" value="010" maxlength=3> 
-					- <input size="10px"  type="text" name="phone2" maxlength=4> - <input size="10px"  type="text"name="phone3" maxlength=4></td> 
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed_join">이메일<br>(e-mail)</td>
-					<td><input size="10px"   type="text" name="email1" /> @ <input  size="10px"  type="text"name="email2" id="email_input"/> 
-					</td>
-				</tr>
-			</tbody>
-		</table>
+	<div class="containner">
+		<div class="signinImage">
+			<img src="${contextPath}/resources/img/signInForm.jpg">
 		</div>
-		<div class="clear">
-		<br><br>
-		<table align=center>
-		<tr >
-			<td >
-				<input type="submit"  value="회원 가입">
-				<input  type="reset"  value="다시입력">
-			</td>
-		</tr>
-	</table>
+		<div class="signinForm">
+		<a href="${contextPath}/"><img src="${contextPath}/resources/img/reallogo.png"></a>
+		<h3>Sign in</h3>
+			<form action="${contextPath}/member/addMember.do" method="post">
+				<div id="detail_table">
+					<table>
+						<tbody>
+							<tr class="dot_line">
+								<td>
+									<input type="text" name="memberId" id="_member_id" size="20" maxlength=30  placeholder="ID"/>
+									<input type="hidden" name="member_id" id="member_id" /> <input type="button" id="btnOverlapped" value="중복체크" onClick="fn_overlapped()"  />
+								</td>
+							</tr>
+							<tr class="dot_line">
+								<td><input name="memberPwd" type="password" size="20" maxlength=30 placeholder="Password"/></td>
+							</tr>
+							<tr class="dot_line">
+								<td><input name="memberNick" type="text" size="20" maxlength=20 placeholder="NickName" /></td>
+							</tr>
+							<tr class="dot_line">
+								<td>
+									<input size="5px" type="text" name="phone1" value="010" maxlength=3 > - 
+									<input size="10px" type="text" name="phone2" maxlength=4 placeholder="Phone"> - 
+									<input size="10px" type="text" name="phone3" maxlength=4 placeholder="Number"></td>
+								</tr>
+							<tr class="dot_line">
+								<td>
+									<input size="10px" type="text" name="email1"  placeholder="Email"/> @ 
+									<input size="10px" type="text" name="email2" id="email_input" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="clear">
+					<br>
+					<table align=center>
+						<tr>
+							<td>
+								<input type="submit" value="회원 가입"> 
+							</td>
+						</tr>
+					</table>
+				</div>
+			</form>
+		</div>
 	</div>
-</form>	
 </body>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </html>

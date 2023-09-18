@@ -143,5 +143,18 @@ public class RecipeServiceImpl implements RecipeService{
 		
 	}
 	
-	
+
+	public List<RecipeSummary> selectSearchResult(Map parameter) {
+		return recipeDAO.selectSearchResult(parameter);
+	}
+
+	@Override
+	public int countSearchResult(String inputedRecipeName) {
+		return recipeDAO.countSearchResult(inputedRecipeName);
+	}
+
+	@Override
+	public boolean editComment(RecipeComment recipeComment) {
+		return recipeDAO.editComment(recipeComment);
+	}
 }
