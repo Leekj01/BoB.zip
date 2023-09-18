@@ -22,16 +22,16 @@
 	                        <a href="${contextPath}/">Homes</a>
 	                    </li>
 	                    <li>
-	                        <a href="${contextPath}/recipe/recipeForm">recipes</a>
+	                        <a href="${contextPath}/recipe/recipeForm">Recipes</a>
 	                    </li>
 	                    <li>
-	                        <a href="${contextPath}/recipe/recipeUploadForm?memberId=${memberLoggedIn}">recipes</a>
+	                        <a href="${contextPath}/recipe/recipeUploadForm?memberId=${memberLoggedIn}">RecipeUpload</a>
 	                    </li>
 	                    <li>
 	                        <a href="${contextPath}/fridge/myFridgeForm">MyFridge</a>
 	                    </li>
 	                    <li>
-	                    	<a href="${contextPath}/recipe/myrecipeForm">Myrecipe</a>
+	                    	<a href="${contextPath}/recipe/myrecipeForm">MyRecipes</a>
 	                    </li>
 	                    <li>
 	                        <a href="${contextPath}/member/updateForm?memberId=${memberLoggedIn}">Profile</a>
