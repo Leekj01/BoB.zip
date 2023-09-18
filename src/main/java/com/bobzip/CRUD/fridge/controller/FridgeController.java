@@ -69,7 +69,9 @@ public class FridgeController {
 	
 	@RequestMapping(value="/searchRecipe.do", method=RequestMethod.GET)
 	public ModelAndView searchRecipe(ModelAndView mav, Paging paging,
-								HttpSession session) {
+								HttpSession session,
+								@RequestParam(value="nowPage", required=false) String nowPage,
+								@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
 		String memberId = (String)session.getAttribute("memberLoggedIn");
 		List<Fridge> myFridge = fridgeService.myFridge(memberId);
 		List<String> ingredients = new ArrayList<String>();
@@ -77,10 +79,18 @@ public class FridgeController {
 			String ingredient = myFridge.get(i).getIngredientName();
 			ingredients.add(ingredient);
 		}
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "16";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "16";
+		}
 		List<RecipeSummary> searchingResult = fridgeService.searchRecipe(ingredients);
 		System.out.println(searchingResult.size());
 		mav.addObject("recipeSummary",searchingResult);
-		paging = new Paging(searchingResult.size(), 1, 16);
+		paging = new Paging(searchingResult.size(), Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		mav.addObject("paging",paging);
 		mav.setViewName("recipe/recipeHome");
 		return mav;

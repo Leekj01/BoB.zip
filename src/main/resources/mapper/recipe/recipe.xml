@@ -24,7 +24,7 @@
       <result column="image" property="image"/>
     </resultMap> 
     
-    <resultMap type="Ingredient" id="ingredeint">
+    <resultMap type="Ingredient" id="ingredient">
     	<result column="rowNumber" property="rowNumber"/>
     	<result column="ingredientName" property="ingredientName"/>
     	<result column="recipeId" property="recipeId"/>
@@ -134,6 +134,55 @@
 		]]>
 	</select>
 	
+	<select id="countMyrecipeSummary" parameterType="String" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM recipesummary WHERE memberId = #{memberId} 
+		]]>
+	</select>
+	
+	<select id="selectAllMyrecipe" parameterType="java.util.Map" resultType="recipeSummary" >
+		<![CDATA[
+			SELECT * FROM recipesummary WHERE memberId = #{memberId}  
+		]]>		
+	</select>
+	
+	<delete id="myrecipeImageDelete" parameterType="recipeSummary" >
+		<![CDATA[
+			UPDATE recipesummary SET image= NULL WHERE recipeId=#{recipeId}
+		]]>
+	</delete>
+	
+	<update id="updateMyRecipeSummary" parameterType="recipeSummary">
+		<![CDATA[
+			UPDATE recipesummary SET recipeId = #{recipeId}, recipeName = #{recipeName}, summary = #{summary}, nationName = #{nationName},
+					levelName = #{levelName}, typeName = #{typeName}, memberId = #{memberId}, image = #{image}
+			WHERE recipeId = #{recipeId}
+		]]>
+	</update>
+	
+	<delete id="deleteMyRecipeInfo" parameterType="String">
+		<![CDATA[
+			DELETE FROM recipeinfo WHERE recipeId = #{recipeId}
+		]]>
+	</delete>
+	
+	<delete id="deleteMyRecipeIngredient" parameterType="String">
+		<![CDATA[
+			DELETE FROM ingredient WHERE recipeId = #{recipeId}
+		]]>
+	</delete>
+	
+	<delete id="deleteMyRecipeSummary" parameterType="String">
+		<![CDATA[
+			DELETE FROM recipesummary WHERE recipeId = #{recipeId}
+		]]>
+	</delete>
+	
+	<update id="updateMyRecipeIngredients" parameterType="ingredient">
+		<![CDATA[
+			UPDATE ingredient SET  ingredientName = #{ingredientName}
+			WHERE rowNumber = #{rowNumber}
+
 	<select id="selectSearchResult" parameterType="java.util.Map" resultType="recipeSummary">
 		<![CDATA[
 			SELECT * FROM recipesummary WHERE recipeName LIKE CONCAT('%',#{inputedRecipeName},'%')

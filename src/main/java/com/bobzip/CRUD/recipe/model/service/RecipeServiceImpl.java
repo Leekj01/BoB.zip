@@ -79,12 +79,71 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDAO.recipecommentsUpdate(commentNo, replyComment);
 	}
 	
-	
+	@Override
 	public RecipeSummary selectSummary(String recipeId) {
 		return recipeDAO.selectSummary(recipeId);
 	}
+	
+	@Override
+	public int myrecipecountBoard(String memberId) {
+		return recipeDAO.selectMyrecipeCount(memberId);
+	}
 
 	@Override
+	public List<RecipeSummary> myrecipeResult(Map<String, Object> parameter) {
+		return recipeDAO.selectAllMyrecipe(parameter);
+	}
+
+	@Override
+	public RecipeSummary updateMyRecipe(String recipeId) {
+		return recipeDAO.selectUpdateRecipe(recipeId);
+	}
+
+	@Override
+	public boolean myrecipeImageDelete(RecipeSummary recipeSummary) {
+		return recipeDAO.myrecipeImageDelete(recipeSummary);
+	}
+
+	@Override
+	public List<Ingredient> updateMyRecipeIngredient(String recipeId) {
+		return recipeDAO.updateMyRecipeIngredient(recipeId);
+	}
+
+	@Override
+	public List<RecipeInfo> updateMyRecipeInfo(String recipeId) {
+		return recipeDAO.updateMyRecipeInfo(recipeId);
+	}
+
+	@Override
+	public void updateMyRecipeSummary(RecipeSummary recipeSummary) {
+		recipeDAO.updateMyRecipeSummary(recipeSummary);
+		
+	}
+
+	@Override
+	public boolean deleteMyRecipeSummary(String recipeId) {
+		 boolean delteMyRecipe = recipeDAO.deleteMyRecipeSummary(recipeId);
+		 return delteMyRecipe;
+	}
+
+	@Override
+	public void updateMyRecipeIngredients(Ingredient ingredient_) {
+		recipeDAO.updateMyRecipeIngredients(ingredient_);
+	}
+
+	@Override
+	public void deleteMyRecipeInfo(String recipeId) {
+		recipeDAO.deleteMyRecipeInfo(recipeId);
+		
+	}
+
+	@Override
+	public void deleteMyRecipeIngredient(String recipeId) {
+		recipeDAO.deleteMyRecipeIngredient(recipeId);
+		
+	}
+	
+
 	public List<RecipeSummary> selectSearchResult(Map parameter) {
 		return recipeDAO.selectSearchResult(parameter);
 	}
@@ -98,6 +157,4 @@ public class RecipeServiceImpl implements RecipeService{
 	public boolean editComment(RecipeComment recipeComment) {
 		return recipeDAO.editComment(recipeComment);
 	}
-
-	
 }

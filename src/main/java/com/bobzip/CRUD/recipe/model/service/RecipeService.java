@@ -36,6 +36,30 @@ public interface RecipeService {
 	boolean editComment(int commentNo, String replyComment);
 
 	RecipeSummary selectSummary(String recipeId);
+	
+	int myrecipecountBoard(String memberId);
+
+	List<RecipeSummary> myrecipeResult(Map<String, Object> parameter);
+
+	RecipeSummary updateMyRecipe(String recipeId);
+
+	boolean myrecipeImageDelete(RecipeSummary recipeSummary);
+
+	List<Ingredient> updateMyRecipeIngredient(String recipeId);
+
+	List<RecipeInfo> updateMyRecipeInfo(String recipeId);
+
+	void updateMyRecipeSummary(RecipeSummary recipeSummary);
+
+	boolean deleteMyRecipeSummary(String recipeId);
+
+	void updateMyRecipeIngredients(Ingredient ingredient_);
+
+	void deleteMyRecipeInfo(String recipeId);
+
+	void deleteMyRecipeIngredient(String recipeId);
+
+	
 
 	List<RecipeSummary> selectSearchResult(Map parameter);
 

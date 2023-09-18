@@ -31,6 +31,9 @@
 	                        <a href="${contextPath}/fridge/myFridgeForm">MyFridge</a>
 	                    </li>
 	                    <li>
+	                    	<a href="${contextPath}/recipe/myrecipeForm">Myrecipe</a>
+	                    </li>
+	                    <li>
 	                        <a href="${contextPath}/member/updateForm?memberId=${memberLoggedIn}">Profile</a>
 	                    </li>
 	                    <li>

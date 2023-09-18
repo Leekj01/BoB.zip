@@ -36,6 +36,28 @@ public interface RecipeDAO {
 	boolean recipecommentsUpdate(int commentNo, String replyComment);
   
 	RecipeSummary selectSummary(String recipeId);
+	
+	int selectMyrecipeCount(String memberId);
+
+	List<RecipeSummary> selectAllMyrecipe(Map<String, Object> parameter);
+
+	RecipeSummary selectUpdateRecipe(String recipeId);
+
+	boolean myrecipeImageDelete(RecipeSummary recipeSummary);
+
+	List<Ingredient> updateMyRecipeIngredient(String recipeId);
+
+	List<RecipeInfo> updateMyRecipeInfo(String recipeId);
+
+	void updateMyRecipeSummary(RecipeSummary recipeSummary);
+
+	boolean deleteMyRecipeSummary(String recipeId);
+
+	void updateMyRecipeIngredients(Ingredient ingredient_);
+
+	void deleteMyRecipeInfo(String recipeId);
+
+	void deleteMyRecipeIngredient(String recipeId);
 
 	List<RecipeSummary> selectSearchResult(Map parameter);
 
