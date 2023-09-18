@@ -281,6 +281,8 @@ public class RecipeController {
 			return ResponseEntity.ok("나의레시피가 삭제되었습니다");
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("나의레시피삭제 실패");
+		}
+	}
 	
 	@RequestMapping(value="/editComment", method=RequestMethod.POST)
 	public ResponseEntity<String> editComment(@ModelAttribute RecipeComment recipeComment){
