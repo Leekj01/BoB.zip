@@ -29,7 +29,7 @@
 			<img src="${contextPath}/resources/img/loginImage.jpg">
 		</div>
 		<div class="loginForm">
-			<a href="${contextPath}/"><img src="${contextPath}/resources/img/reallogo.png"></a>
+			<a id="img" href="${contextPath}/"><img src="${contextPath}/resources/img/reallogo.png"></a>
 			<H3>Log in</H3>
 			<form action="${contextPath}/member/login.do" method="post">
 				<TABLE>
