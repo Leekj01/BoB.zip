@@ -49,11 +49,11 @@ public interface RecipeDAO {
 
 	List<RecipeInfo> updateMyRecipeInfo(String recipeId);
 
-	void updateMyRecipeSummary(RecipeSummary recipeSummary);
+	//void updateMyRecipeSummary(RecipeSummary recipeSummary);
 
 	boolean deleteMyRecipeSummary(String recipeId);
 
-	void updateMyRecipeIngredients(Ingredient ingredient_);
+	//void updateMyRecipeIngredients(Ingredient ingredient_);
 
 	void deleteMyRecipeInfo(String recipeId);
 

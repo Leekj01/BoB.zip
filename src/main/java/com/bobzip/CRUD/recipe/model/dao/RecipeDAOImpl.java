@@ -120,12 +120,12 @@ public class RecipeDAOImpl implements RecipeDAO{
 	public List<RecipeInfo> updateMyRecipeInfo(String recipeId) {
 		return sqlSession.selectList("mapper.recipe.selectRecipeInfo", recipeId);
 	}
-
+	/*
 	@Override
 	public void updateMyRecipeSummary(RecipeSummary recipeSummary) {
 		sqlSession.update("mapper.recipe.updateMyRecipeSummary", recipeSummary);
 	}
-
+	*/
 	@Override
 	public boolean deleteMyRecipeSummary(String recipeId) {
 		int num = sqlSession.delete("mapper.recipe.deleteMyRecipeSummary", recipeId);
@@ -134,13 +134,13 @@ public class RecipeDAOImpl implements RecipeDAO{
 		}
 		return false;
 	}
-
+	/*
 	@Override
 	public void updateMyRecipeIngredients(Ingredient ingredient_) {
 		sqlSession.update("mapper.recipe.updateMyRecipeIngredients", ingredient_);
 		
 	}
-
+	*/
 	@Override
 	public void deleteMyRecipeInfo(String recipeId) {
 		sqlSession.delete("mapper.recipe.deleteMyRecipeInfo", recipeId);

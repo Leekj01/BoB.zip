@@ -113,24 +113,24 @@ public class RecipeServiceImpl implements RecipeService{
 	public List<RecipeInfo> updateMyRecipeInfo(String recipeId) {
 		return recipeDAO.updateMyRecipeInfo(recipeId);
 	}
-
+	/*
 	@Override
 	public void updateMyRecipeSummary(RecipeSummary recipeSummary) {
 		recipeDAO.updateMyRecipeSummary(recipeSummary);
 		
 	}
-
+	*/
 	@Override
 	public boolean deleteMyRecipeSummary(String recipeId) {
 		 boolean delteMyRecipe = recipeDAO.deleteMyRecipeSummary(recipeId);
 		 return delteMyRecipe;
 	}
-
+	/*
 	@Override
 	public void updateMyRecipeIngredients(Ingredient ingredient_) {
 		recipeDAO.updateMyRecipeIngredients(ingredient_);
 	}
-
+	*/
 	@Override
 	public void deleteMyRecipeInfo(String recipeId) {
 		recipeDAO.deleteMyRecipeInfo(recipeId);
