@@ -34,6 +34,10 @@ body {
 	margin: 150px 100px auto 100px;
 }
 
+.loginForm #img {
+	margin-left: 25px;
+}
+
 .loginForm h3 {
 	margin-bottom: 20px;
 	color: black;

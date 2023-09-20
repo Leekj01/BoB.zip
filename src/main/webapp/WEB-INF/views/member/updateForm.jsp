@@ -17,7 +17,7 @@
 			<img src="${contextPath}/resources/img/updateForm.jpg">
 		</div>
 		<div class="signinForm">
-			<a href="${contextPath}/"><img src="${contextPath}/resources/img/reallogo.png"></a>
+			<a id="img" href="${contextPath}/"><img src="${contextPath}/resources/img/reallogo.png"></a>
 			<h3>Update Profile</h3>
 			<form action="${contextPath}/member/updateMember.do" method="post">
 				<div id="detail_table">

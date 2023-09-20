@@ -8,7 +8,7 @@
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://kit.fontawesome.com/3e352a9905.js" crossorigin="anonymous"></script>
-<script>
+<script type="text/javascript">
 function deleteComment(commentNo) {
 	  if (confirm("정말로 이 댓글을 삭제하시겠습니까?")) {
 	    $.ajax({
